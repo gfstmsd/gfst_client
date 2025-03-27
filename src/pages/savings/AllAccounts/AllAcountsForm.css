@@ -1,0 +1,125 @@
+/* Ensure content is pushed down to avoid being covered by navbar */
+.all-accounts-container {
+    padding-top: 70px; /* Adjust this value according to navbar height */
+    margin-bottom: 40px;
+}
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+/* Heading */
+h1 {
+    color: #343a40;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.table th,
+.table td {
+    padding: 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table thead {
+    background-color: #086fd5;
+    color: #f8f5f5;
+}
+
+.table thead th {
+    border-bottom: 2px solid #424a53;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #e1f0f1;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #e5e7de;
+}
+
+.table tbody tr:hover {
+    background-color: #929981;
+    cursor: pointer;
+}
+
+.table tbody tr td {
+    border-bottom: 1px solid #140606;
+    border-top: 1px solid #140606;
+}
+
+.table tbody tr td:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.table tbody tr td:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/* Print button styling */
+.print-btn {
+    display: block;
+    width: 80px;
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.print-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Ensure proper formatting for printing */
+@media print {
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table th, .table td {
+        border: 1px solid #615e5e;
+        padding: 8px;
+    }
+
+    .table thead {
+        background-color: #086fd5 !important;
+        color: #f8f5f5 !important;
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background-color: #e1f0f1 !important;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #e5e7de !important;
+    }
+
+    .print-btn, .print-btn-container {
+        display: none !important;
+    }
+}

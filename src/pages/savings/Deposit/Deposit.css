@@ -1,0 +1,84 @@
+/* In Deposit.css */
+
+/* Wrapper for centering and giving margin to the form */
+.form-wrapper {
+  margin-top: 100px; /* Adjust this value to push the form lower */
+  display: flex;
+  justify-content: center;
+}
+
+/* Container for the deposit form */
+.deposit-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form */
+.deposit-form {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of the form */
+.form-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Grouping of form elements */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Form input fields styling */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Button styling */
+.btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* Verify account button */
+.verify-btn {
+  margin-top: 10px;
+}
+
+/* Verified account information */
+.verified-info {
+  margin-top: 20px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+}

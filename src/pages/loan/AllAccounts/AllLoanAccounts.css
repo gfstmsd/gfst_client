@@ -1,0 +1,131 @@
+/* TransactionTable.css */
+
+/* Add this to your existing CSS */
+.search-bar {
+    width: 100%; /* Make the search bar take up the full width */
+    padding: 10px; /* Add some padding for better appearance */
+    font-size: 16px; /* Adjust font size for readability */
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+
+h1 {
+    color: #343a40;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 1rem;
+    /* Increased font size for better readability */
+}
+
+.table th,
+.table td {
+    padding: 6px;
+    /* Increased padding for more space */
+    text-align: center;
+    vertical-align: middle;
+    /* Vertically center the text */
+}
+
+.table thead {
+    background-color: #086fd5;
+    color: #f8f5f5;
+}
+
+.table thead th {
+    border-bottom: 2px solid #424a53;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #e1f0f1;
+}
+.table tbody tr:nth-child(even) {
+    background-color: #e5e7de;
+}
+
+
+.table tbody tr:hover {
+    background-color: #929981;
+    cursor: pointer;
+}
+
+.table tbody tr td {
+    border-bottom: 1px solid #140606;
+    border-top: 1px solid #140606;
+}
+
+.table tbody tr td:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+}
+
+.table tbody tr td:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+}
+
+
+
+.print-btn {
+    display: block;
+    width: 70px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+.print-btn-container {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    margin-top: 20px;
+}
+
+
+@media print {
+    /* body {
+        -webkit-print-color-adjust: exact;
+    } */
+
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table th, .table td {
+        border: 1px solid #615e5e;
+        padding: 8px;
+    }
+
+    .table thead {
+        background-color: #086fd5 !important;
+        color: #f8f5f5 !important;
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background-color: #e1f0f1 !important;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #e5e7de !important;
+    }
+
+    .print-btn, .print-btn-container {
+        display: none !important;
+    }
+}

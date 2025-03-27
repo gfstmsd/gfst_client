@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+   <!-- Background Layers -->
+   <circle cx="150" cy="150" r="140" fill="#003366"/>
+   <circle cx="150" cy="150" r="135" fill="#002855"/>
+   
+   <!-- Decorative Patterns -->
+   <circle cx="150" cy="150" r="120" fill="none" stroke="#FFD700" stroke-width="2"/>
+   <circle cx="150" cy="150" r="125" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.5"/>
+   <circle cx="150" cy="150" r="115" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+   
+   <!-- Enhanced Building Structure -->
+   <path d="M120 220 L120 140 L180 140 L180 220"
+         fill="none" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+   
+   <!-- Column Details -->
+   <path d="M120 180 L180 180" stroke="#FFD700" stroke-width="2" opacity="0.7"/>
+   <path d="M120 160 L180 160" stroke="#FFD700" stroke-width="2" opacity="0.7"/>
+   <path d="M120 200 L180 200" stroke="#FFD700" stroke-width="2" opacity="0.7"/>
+   
+   <!-- Enhanced Roof Design -->
+   <path d="M110 140 L150 100 L190 140"
+         fill="none" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+   <path d="M115 135 L150 105 L185 135"
+         fill="none" stroke="#FFD700" stroke-width="2" opacity="0.5"/>
+   
+   <!-- Multiple Supporting Hands -->
+   <path d="M90 180 Q150 160, 210 180"
+         fill="none" stroke="#FFD700" stroke-width="4" stroke-linecap="round"/>
+   <path d="M100 190 Q150 170, 200 190"
+         fill="none" stroke="#FFD700" stroke-width="4" stroke-linecap="round"/>
+   <path d="M95 185 Q150 165, 205 185"
+         fill="none" stroke="#FFD700" stroke-width="2" opacity="0.5"/>
+   
+   <!-- Door -->
+   <rect x="145" y="180" width="10" height="40" fill="#FFD700"/>
+   
+   <!-- Money Symbol -->
+   <text x="145" y="130" fill="#FFD700" font-family="Arial" font-size="22" font-weight="bold">$</text>
+   
+   <!-- Additional Decorative Elements -->
+   <circle cx="150" cy="150" r="130" fill="none" stroke="#FFD700" stroke-width="0.5" stroke-dasharray="2,4"/>
+   
+   <!-- Adjusted Circular Text Paths - Making larger arcs -->
+   <path id="arc1" d="M150,65 A85,85 0 0,1 235,150" fill="none"/>
+   <path id="arc2" d="M235,150 A85,85 0 0,1 150,235" fill="none"/>
+   <path id="arc3" d="M150,235 A85,85 0 0,1 65,150" fill="none"/>
+   <path id="arc4" d="M65,150 A85,85 0 0,1 150,65" fill="none"/>
+   
+   <!-- Circular Text with Reduced Font Size -->
+   <text fill="#FFD700" font-family="Arial" font-size="18" font-weight="bold">
+     <textPath href="#arc1" startOffset="50%" text-anchor="middle">FUTURE</textPath>
+   </text>
+   <text fill="#FFD700" font-family="Arial" font-size="18" font-weight="bold">
+     <textPath href="#arc2" startOffset="50%" text-anchor="middle">SUPPORTIVE</textPath>
+   </text>
+   <text fill="#FFD700" font-family="Arial" font-size="18" font-weight="bold">
+     <textPath href="#arc3" startOffset="50%" text-anchor="middle">TRUST</textPath>
+   </text>
+   <text fill="#FFD700" font-family="Arial" font-size="18" font-weight="bold">
+     <textPath href="#arc4" startOffset="50%" text-anchor="middle">GOLDEN</textPath>
+   </text>
+   
+   <!-- Subtle Glow Effect -->
+   <circle cx="150" cy="150" r="110" fill="none" stroke="#FFD700" stroke-width="0.5" opacity="0.2"/>
+</svg>

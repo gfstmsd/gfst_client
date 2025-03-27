@@ -1,0 +1,65 @@
+/* Container Styling */
+.delete-account-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styling */
+.delete-account-container h2 {
+    color: #dc3545;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Error Text Styling */
+.error-text {
+    font-weight: bold;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Button Styling */
+.btn-danger {
+    background-color: #e3505f;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 4px;
+    text-align: center;
+    /* width: 100%; */
+}
+
+.btn-danger:hover {
+    background-color: #f60820;
+    transition: background-color 0.3s ease;
+}
+
+/* Text Center */
+.text-center {
+    text-align: center;
+}
+
+/* Margin top for spacing */
+.mt-3 {
+    margin-top: 20px;
+}

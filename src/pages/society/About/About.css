@@ -1,0 +1,59 @@
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
+  margin: 60px auto 20px auto; /* Increased top margin to push it down */
+  padding: 40px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.logo-con {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #009688;
+  font-weight: bold;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 15px 0;
+  color: #222;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Centered and fully visible without scrollbar */
+.text-container {
+  width: 100%;
+  max-width: 900px;  /* Adjusts to a readable width */
+  text-align: justify;
+  padding: 10px;
+  overflow: hidden; /* Removes any scrolling */
+  white-space: normal; /* Ensures normal text wrapping */
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  text-align: justify;
+}
+
+

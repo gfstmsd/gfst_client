@@ -1,0 +1,120 @@
+/* General styles */
+.expenditure-section {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 100px 20px 20px; /* Increased top padding to prevent navbar overlap */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.expenditure-section h2 {
+  text-align: center;
+  color: #c0392b;
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+.expense-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Submit button */
+.submit-button {
+  background-color: #c0392b;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #a83227;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Success Message */
+.success-message {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Expenditure Slip */
+.expenditure-slip {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.expenditure-slip h3 {
+  color: #c0392b;
+}
+
+.expenditure-slip p {
+  margin: 5px 0;
+}
+
+/* Print Button */
+.print-button {
+  background-color: #3498db;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.print-button:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .expenditure-section {
+    padding: 120px 15px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .expenditure-section {
+    padding: 130px 10px 10px;
+  }
+
+  .expenditure-slip {
+    padding: 15px;
+  }
+}

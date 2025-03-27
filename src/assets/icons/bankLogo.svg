@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Main Circle -->
+  <circle cx="150" cy="150" r="140" fill="#003366"/>
+  
+  <!-- Inner Golden Ring -->
+  <circle cx="150" cy="150" r="120" fill="none" stroke="#FFD700" stroke-width="2"/>
+  
+  <!-- Abstract Building/Columns -->
+  <path d="M120 220 L120 140 L180 140 L180 220" 
+        fill="none" 
+        stroke="#FFD700" 
+        stroke-width="6"
+        stroke-linecap="round"/>
+  
+  <!-- Roof/Growth Triangle -->
+  <path d="M110 140 L150 100 L190 140" 
+        fill="none" 
+        stroke="#FFD700" 
+        stroke-width="6"
+        stroke-linecap="round"/>
+  
+  <!-- Supporting Hands -->
+  <path d="M90 180 Q150 160, 210 180" 
+        fill="none" 
+        stroke="#FFD700" 
+        stroke-width="4"
+        stroke-linecap="round"/>
+  
+  <path d="M100 190 Q150 170, 200 190" 
+        fill="none" 
+        stroke="#FFD700" 
+        stroke-width="4"
+        stroke-linecap="round"/>
+  
+  <!-- Stars representing future -->
+  <path d="M130 120 L132 125 L137 125 L133 128 L135 133 L130 130 L125 133 L127 128 L123 125 L128 125 Z" fill="#FFD700"/>
+  <path d="M170 120 L172 125 L177 125 L173 128 L175 133 L170 130 L165 133 L167 128 L163 125 L168 125 Z" fill="#FFD700"/>
+  
+  <!-- Circular Text Paths -->
+  <path id="upperArc" d="M150,70 A80,80 0 0,1 230,150" fill="none"/>
+  <path id="lowerArc" d="M230,150 A80,80 0 0,1 150,230" fill="none"/>
+  <path id="bottomArc" d="M150,230 A80,80 0 0,1 70,150" fill="none"/>
+  <path id="leftArc" d="M70,150 A80,80 0 0,1 150,70" fill="none"/>
+  
+  <!-- Circular Text -->
+  <text fill="#FFD700" font-family="Arial" font-size="16" font-weight="bold">
+    <textPath href="#upperArc" startOffset="50%" text-anchor="middle">GOLDEN</textPath>
+    <textPath href="#lowerArc" startOffset="50%" text-anchor="middle">FUTURE</textPath>
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">SUPPORTIVE</textPath>
+    <textPath href="#leftArc" startOffset="50%" text-anchor="middle">TRUST</textPath>
+  </text>
+</svg>

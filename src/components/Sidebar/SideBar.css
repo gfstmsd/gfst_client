@@ -1,0 +1,343 @@
+
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a2942 0%, #0f1d33 100%);
+  color: #e2e8f0;
+  transition: all 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+/* Section styling */
+.section {
+  padding: 0;
+  margin-bottom: 5px;
+}
+/* Section header styling */
+.section h2 {
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.section h2 svg {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  color: #64b5f6;
+}
+
+/* Hover effect for section headers */
+.section:hover h2 {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #64b5f6;
+  color: white;
+}
+
+/* Expanded section styling */
+.section.expanded {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.section.expanded h2 {
+  border-left: 4px solid #64b5f6;
+  color: white;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.section.expanded .dropdown-content {
+  max-height: 400px;
+  opacity: 1;
+  padding: 10px 0;
+}
+
+/* Navigation link styling */
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px 12px 45px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-left: 4px solid transparent;
+}
+
+.dropdown-content a svg {
+  margin-right: 10px;
+  font-size: 14px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+/* Navigation link hover and active states */
+.dropdown-content a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-left: 4px solid #90caf9;
+}
+
+.dropdown-content a:hover svg {
+  opacity: 1;
+  color: #90caf9;
+}
+
+.dropdown-content a.active {
+  background-color: rgba(100, 181, 246, 0.2);
+  color: white;
+  border-left: 4px solid #64b5f6;
+}
+
+.dropdown-content a.active svg {
+  opacity: 1;
+  color: #64b5f6;
+}
+
+/* Icon-specific colors for better visual distinction */
+.section:nth-child(1) h2 svg, 
+.section:nth-child(1).expanded .dropdown-content a.active svg {
+  color: #81c784; /* Green for Savings */
+}
+
+.section:nth-child(2) h2 svg,
+.section:nth-child(2).expanded .dropdown-content a.active svg {
+  color: #ff8a65; /* Orange for Loan */
+}
+
+.section:nth-child(3) h2 svg,
+.section:nth-child(3).expanded .dropdown-content a.active svg {
+  color: #64b5f6; /* Blue for Investment */
+}
+
+.section:nth-child(4) h2 svg,
+.section:nth-child(4).expanded .dropdown-content a.active svg {
+  color: #ba68c8; /* Purple for Society */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    width: 70px;
+    overflow: visible;
+  }
+  
+  .sidebar:hover, 
+  .sidebar:focus-within {
+    width: 250px;
+  }
+  
+  .section h2 {
+    justify-content: center;
+    padding: 15px 0;
+  }
+  
+  .section h2 svg {
+    margin-right: 0;
+    font-size: 20px;
+  }
+  
+  .sidebar:hover .section h2,
+  .sidebar:focus-within .section h2 {
+    justify-content: flex-start;
+    padding: 15px 20px;
+  }
+  
+  .sidebar:hover .section h2 svg,
+  .sidebar:focus-within .section h2 svg {
+    margin-right: 12px;
+  }
+  
+  /* Hide text in collapsed state */
+  .section h2 span {
+    display: none;
+    white-space: nowrap;
+  }
+  
+  .sidebar:hover .section h2 span,
+  .sidebar:focus-within .section h2 span {
+    display: inline;
+  }
+  
+  /* Adjustments for dropdown positioning */
+  .section.expanded .dropdown-content {
+    position: absolute;
+    left: 70px;
+    top: 0;
+    width: 200px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    max-height: none;
+    z-index: 101;
+  }
+  
+  .sidebar:hover .section.expanded .dropdown-content,
+  .sidebar:focus-within .section.expanded .dropdown-content {
+    position: static;
+    width: auto;
+    box-shadow: none;
+  }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 576px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    position: relative;
+    padding: 10px 0;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .section {
+    flex: 1;
+    margin: 0 2px;
+    min-width: 70px;
+  }
+  
+  .section h2 {
+    padding: 10px 5px;
+    flex-direction: column;
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .section h2 svg {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+  }
+  
+  .section h2 span {
+    display: block;
+    font-size: 10px;
+  }
+  
+  .section.expanded .dropdown-content {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    max-width: 250px;
+    z-index: 101;
+  }
+  
+  /* Side menu toggle for very small screens */
+  @media screen and (max-width: 400px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 250px;
+      height: 100vh;
+      flex-direction: column;
+      transition: left 0.3s ease;
+    }
+    
+    .sidebar.active {
+      left: 0;
+    }
+    
+    /* Add menu toggle button styles here */
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 102;
+      background: #1a2942;
+      padding: 8px;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+    
+    .section {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+    
+    .section h2 {
+      flex-direction: row;
+      text-align: left;
+      padding: 15px 20px;
+      font-size: 16px;
+    }
+    
+    .section h2 svg {
+      margin-right: 12px;
+      margin-bottom: 0;
+    }
+    
+    .section h2 span {
+      display: inline;
+      font-size: 16px;
+    }
+    
+    .section.expanded .dropdown-content {
+      position: static;
+      width: 100%;
+      max-width: none;
+    }
+  }
+}
+
+
+/* Contact section at the bottom */
+.contact-section {
+  padding: 10px;
+  color: white;
+  background: #1a2942;
+  text-align: center;
+  margin-top: auto; /* Pushes contact section to the bottom */
+}
+
+.contact-section p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.contact-section .map-link, .contact-section .developer-link {
+  color: #4da8da;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-section .map-link:hover, .contact-section .developer-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Touch-friendly adjustments */
+@media (hover: none) {
+  .section:hover h2 {
+    background-color: transparent;
+    border-left: 4px solid transparent;
+    color: #e2e8f0;
+  }
+  
+  .section.expanded:hover h2 {
+    border-left: 4px solid #64b5f6;
+    color: white;
+  }
+}

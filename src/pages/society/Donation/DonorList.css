@@ -1,0 +1,100 @@
+/* General styles for the donor list */
+.donor-list-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 20px 20px; /* Increased top padding to prevent navbar overlap */
+  background-color: #f4f4f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.donor-list-section h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.donor-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.donor-table th, .donor-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.donor-table th {
+  background-color: #2980b9;
+  color: white;
+}
+
+.donor-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .donor-table {
+    border: 0;
+    width: 100%;
+  }
+
+  .donor-table th, .donor-table td {
+    display: block;
+    padding: 10px;
+    text-align: right;
+  }
+
+  .donor-table th {
+    background-color: #2980b9;
+    color: white;
+    position: relative;
+  }
+
+  .donor-table tr {
+    margin-bottom: 10px;
+    display: block;
+    background-color: #fff;
+  }
+
+  .donor-table td {
+    text-align: left;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .donor-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+
+  .donor-table td:last-child {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+@media (max-width: 480px) {
+  .donor-list-section {
+    padding: 120px 10px 10px; /* Further increased padding for small screens */
+  }
+
+  .donor-table th, .donor-table td {
+    font-size: 0.9em;
+  }
+
+  .donor-table td {
+    padding-left: 40%;
+  }
+}

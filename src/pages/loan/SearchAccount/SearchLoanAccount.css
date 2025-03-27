@@ -1,0 +1,43 @@
+.search-account-container {
+  max-width: 500px; /* Set a max width for the container */
+  margin: 50px auto; /* Center the container */
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.search-bar {
+  display: flex; /* Use flexbox to align items */
+  justify-content: space-between; /* Space between input and button */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 20px; /* Space below the search bar */
+}
+
+.form-control {
+  flex: 1; /* Allow input to grow and fill space */
+  margin-right: 10px; /* Space between input and button */
+  padding: 10px; /* Padding for better touch targets */
+  border: 1px solid #ccc; /* Border for the input */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.btn {
+  padding: 10px 20px; /* Padding for button */
+  background-color: #007bff; /* Button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+
+.error-text {
+  color: #dc3545; /* Red color for errors */
+  margin-top: 10px; /* Space above error text */
+  text-align: center; /* Center align the error message */
+}

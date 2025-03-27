@@ -1,0 +1,276 @@
+/* Navbar container styling */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1a2942 0%, #2c3e50 100%);
+  color: #ffffff;
+  padding: 0 2rem;
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 250px; /* Adjust based on sidebar width */
+  z-index: 99;
+  transition: all 0.3s ease;
+}
+
+/* Brand section with logo and heading */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+.heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile menu toggle button - hidden by default on desktop */
+.menu-toggle {
+  display: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Navigation links container */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Individual nav link styling */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-link svg {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Hover effect for links */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Active link styling */
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Animated underline effect for links */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #64b5f6;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+}
+
+/* Logout button styling */
+.logout-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  margin-left: 10px;
+  color: #e2e8f0;
+}
+
+.logout-button:hover {
+  background-color: rgba(231, 76, 60, 0.2);
+  border-color: rgba(231, 76, 60, 0.3);
+  color: #ff8a80;
+}
+
+.logout-button:hover::after {
+  background-color: #ff8a80;
+}
+
+.logout-button svg {
+  color: #ff8a80;
+}
+
+/* Responsive adjustments for large tablets */
+@media screen and (max-width: 1024px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+  
+  .heading {
+    font-size: 1.1rem;
+  }
+  
+  .nav-link {
+    padding: 8px 12px;
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media screen and (max-width: 768px) {
+  .navbar-container {
+    left: 70px; /* Adjust based on collapsed sidebar width */
+  }
+  
+  .heading {
+    display: none;
+  }
+  
+  .nav-link span {
+    display: none;
+  }
+  
+  .nav-link {
+    padding: 8px 12px;
+    justify-content: center;
+  }
+  
+  .nav-link svg {
+    margin-right: 0;
+    font-size: 18px;
+  }
+}
+
+/* Responsive adjustments for mobile devices */
+@media screen and (max-width: 576px) {
+  .navbar-container {
+    left: 0;
+    padding: 0 1rem;
+    height: 60px;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .navbar-brand {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .navbar-logo {
+    height: 32px;
+    margin-right: 8px;
+  }
+  
+  .heading {
+    display: block;
+    font-size: 1rem;
+  }
+  
+  /* Mobile menu styling */
+  .navbar-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #1a2942;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar-links.show {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    padding: 10px 0;
+  }
+  
+  .nav-link {
+    padding: 12px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    justify-content: flex-start;
+  }
+  
+  .nav-link span {
+    display: inline-block;
+  }
+  
+  .nav-link svg {
+    margin-right: 10px;
+  }
+  
+  .nav-link::after {
+    display: none;
+  }
+  
+  .logout-button {
+    margin: 10px 15px;
+    border-radius: 4px;
+    justify-content: center;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 380px) {
+  .heading {
+    display: none;
+  }
+}
+
+/* For landscape mobile orientation */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .navbar-container {
+    height: 50px;
+  }
+  
+  .navbar-links.show {
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+  
+  .nav-link {
+    padding: 8px 16px;
+  }
+}
+
+/* When sidebar is hidden on mobile */
+@media screen and (max-width: 576px) {
+  body.sidebar-hidden .navbar-container {
+    left: 0;
+  }
+}

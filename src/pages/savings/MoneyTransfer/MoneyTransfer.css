@@ -1,0 +1,145 @@
+
+.money-transfer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f9fc;
+    padding: 20px;
+  }
+  
+
+  .money-transfer-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 420px;
+    max-width: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+  
+
+  .money-transfer-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+ 
+  .money-transfer-group {
+    margin-bottom: 15px;
+  }
+  
+  .money-transfer-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .money-transfer-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .money-transfer-input:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  .money-transfer-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-bottom: 15px;
+  }
+  
+  .money-transfer-btn {
+    width: auto; 
+    padding: 10px 20px; 
+    display: block;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .money-transfer-btn.verify {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .money-transfer-btn.verify:hover {
+    background-color: #2980b9;
+  }
+  
+  .money-transfer-btn.submit {
+    background-color: #27ae60;
+    color: white;
+  }
+  
+  .money-transfer-btn.submit:hover {
+    background-color: #219150;
+  }
+  
+
+  .money-transfer-error {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .money-transfer-container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .money-transfer-title {
+      font-size: 20px;
+    }
+  
+    .money-transfer-input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .money-transfer-btn {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .money-transfer-container {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .money-transfer-title {
+      font-size: 18px;
+    }
+  
+    .money-transfer-input {
+      font-size: 14px;
+      padding: 6px;
+    }
+  
+    .money-transfer-btn {
+      font-size: 14px;
+      padding: 6px;
+    }
+  }
+  

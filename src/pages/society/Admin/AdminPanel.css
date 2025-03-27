@@ -1,0 +1,564 @@
+/* .branch-management-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.branch-management-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.status-message-error {
+  color: red;
+  font-weight: bold;
+}
+
+.branch-registration-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.branch-registry-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.branch-registry-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.branch-registry-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.branch-registry-table th, .branch-registry-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.branch-registry-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.loading-text {
+  font-weight: bold;
+} */
+
+
+
+
+
+
+
+
+
+
+/* Branch Management Styles */
+/* .branch-management {
+  padding: 80px 20px 30px; 
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.branch-management__title {
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.branch-management__subtitle {
+  color: #444;
+  margin: 24px 0 16px;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+.branch-management__form {
+  background-color: #f8f9fa;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.branch-management__form-group {
+  margin-bottom: 16px;
+}
+
+.branch-management__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.branch-management__input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.branch-management__input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.branch-management__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.branch-management__button--primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.branch-management__button--secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.branch-management__button--small {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #4a90e2;
+  color: white;
+}
+
+.branch-management__button--cancel {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-left: 10px;
+}
+
+.branch-management__list-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.branch-management__message {
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.branch-management__message--success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.branch-management__message--error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+
+.branch-management__table-container {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.branch-management__table-wrapper {
+  overflow-x: auto;
+}
+
+.branch-management__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.branch-management__th {
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.branch-management__td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.branch-management__tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.branch-management__reset-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.branch-management__reset-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+.branch-management__reset-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.branch-management__button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.branch-management__loading,
+.branch-management__empty {
+  text-align: center;
+  color: #666;
+  padding: 24px;
+}
+
+
+@media (max-width: 600px) {
+  .branch-management {
+    padding-top: 60px;
+  }
+  
+  .branch-management__form {
+    padding: 16px;
+  }
+  
+  .branch-management__button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .branch-management__button-group {
+    flex-direction: column;
+  }
+  
+  .branch-management__button--cancel {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  
+  .branch-management__table th,
+  .branch-management__table td {
+    padding: 8px;
+  }
+} */
+
+
+
+
+
+
+/* Branch Management Styles */
+.branch-management {
+  padding: 80px 20px 30px; /* Extra top padding to account for navbar */
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.branch-management__title {
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.branch-management__subtitle {
+  color: #444;
+  margin: 24px 0 16px;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Form styles */
+.branch-management__form {
+  background-color: #f8f9fa;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.branch-management__form-group {
+  margin-bottom: 16px;
+}
+
+.branch-management__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.branch-management__input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.branch-management__input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Button container for centering */
+.branch-management__button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Button styles */
+.branch-management__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.branch-management__button--primary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.branch-management__button--secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.branch-management__button--small {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #4a90e2;
+  color: white;
+}
+
+.branch-management__button--cancel {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-left: 10px;
+}
+
+.branch-management__list-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Message styles */
+.branch-management__message {
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.branch-management__message--success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.branch-management__message--error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Table styles */
+.branch-management__table-container {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.branch-management__table-wrapper {
+  overflow-x: auto;
+}
+
+.branch-management__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.branch-management__th {
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.branch-management__td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.branch-management__tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Password reset modal */
+.branch-management__reset-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.branch-management__reset-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+.branch-management__reset-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.branch-management__button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.branch-management__loading,
+.branch-management__empty {
+  text-align: center;
+  color: #666;
+  padding: 24px;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .branch-management {
+    padding-top: 60px;
+  }
+  
+  .branch-management__form {
+    padding: 16px;
+  }
+  
+  .branch-management__button {
+    width: auto;
+    margin-bottom: 8px;
+  }
+  
+  .branch-management__button-group {
+    flex-direction: column;
+  }
+  
+  .branch-management__button--cancel {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  
+  .branch-management__table th,
+  .branch-management__table td {
+    padding: 8px;
+  }
+}
