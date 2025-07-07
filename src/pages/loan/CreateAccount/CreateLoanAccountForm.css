@@ -5,12 +5,14 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .update-account-container h2 {
   color: #333;
   font-weight: 700;
   margin-bottom: 30px;
+  font-size: 2rem;
 }
 
 .form-container {
@@ -27,6 +29,7 @@
   margin-bottom: 8px;
   display: block;
   color: #333;
+  font-size: 1rem;
 }
 
 .form-control {
@@ -36,6 +39,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .form-control:focus {
@@ -46,19 +50,55 @@
 .btn-primary {
   background-color: #007bff;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1.1rem;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  width: 100%;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: #0056b3;
 }
 
 .error {
   color: red;
   margin-bottom: 20px;
+}
+
+@media (max-width: 700px) {
+  .update-account-container {
+    max-width: 98vw;
+    padding: 12px;
+  }
+  .update-account-container h2 {
+    font-size: 1.3rem;
+  }
+  .form-group label {
+    font-size: 0.98rem;
+  }
+  .form-control {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .update-account-container {
+    padding: 6px;
+  }
+  .update-account-container h2 {
+    font-size: 1.1rem;
+  }
+  .btn-primary {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
 }

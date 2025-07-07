@@ -1,11 +1,10 @@
-
 .contact-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: 90%;
-  margin: 80px auto 40px auto; /* More spacing for better visibility */
+  margin: 80px auto 40px auto;
   padding: 40px;
   font-family: 'Arial', sans-serif;
   color: #333;
@@ -13,15 +12,15 @@
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
-
 
 .logo {
   width: 160px;
   height: auto;
   margin-bottom: 20px;
+  max-width: 80vw;
 }
-
 
 .contact-title {
   font-size: 2.2rem;
@@ -39,7 +38,6 @@
   max-width: 800px;
 }
 
-
 .contact-info {
   display: flex;
   flex-direction: column;
@@ -47,8 +45,8 @@
   gap: 12px;
   width: 100%;
   max-width: 600px;
+  box-sizing: border-box;
 }
-
 
 .contact-link {
   display: flex;
@@ -64,7 +62,8 @@
   transition: all 0.3s ease-in-out;
 }
 
-.contact-link:hover {
+.contact-link:hover,
+.contact-link:focus {
   color: #00796b;
   background: #e0f2f1;
   transform: scale(1.05);
@@ -90,11 +89,11 @@
   transition: transform 0.2s;
 }
 
-.contact-phone:hover {
+.contact-phone:hover,
+.contact-phone:focus {
   background: #e3f2fd;
   transform: scale(1.05);
 }
-
 
 .contact-section {
   width: 100%;
@@ -104,6 +103,7 @@
   padding: 20px 10px;
   margin-top: 40px;
   border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .contact-section h4 {
@@ -129,7 +129,6 @@
   text-decoration: underline;
 }
 
-
 .contact-form {
   background: white;
   padding: 30px;
@@ -137,6 +136,7 @@
   box-shadow: 0 0 10px rgb(38, 255, 0);
   width: 100%;
   max-width: 500px;
+  box-sizing: border-box;
 }
 
 .contact-form h3 {
@@ -156,33 +156,77 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
+  box-sizing: border-box;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #555; 
+  color: #555;
 }
-
 
 .btn-primary {
   background-color: #007bff;
   color: white;
-  padding: 10px 15px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: background 0.3s ease;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: #0056b3;
 }
 
 .call-icon {
   margin-right: 8px;
-  color: #25d366; 
+  color: #25d366;
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    max-width: 98vw;
+    padding: 24px 4vw;
+  }
+  .logo {
+    width: 110px;
+  }
+  .contact-title {
+    font-size: 1.5rem;
+  }
+  .contact-description {
+    font-size: 1rem;
+  }
+  .contact-form {
+    max-width: 98vw;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .contact-container {
+    padding: 10px 2vw;
+    margin: 30px auto 10px auto;
+  }
+  .logo {
+    width: 70px;
+  }
+  .contact-title {
+    font-size: 1.1rem;
+  }
+  .contact-description {
+    font-size: 0.95rem;
+  }
+  .contact-form {
+    padding: 8px;
+  }
+  .btn-primary {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
 }

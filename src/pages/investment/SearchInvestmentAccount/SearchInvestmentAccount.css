@@ -10,49 +10,85 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
-  }
-  
-  h1 {
+    box-sizing: border-box;
+}
+
+h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
-  }
-  
-  .search-bar {
+}
+
+.search-bar {
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-  
-  .form-control {
+}
+
+.form-control {
     padding: 10px;
     font-size: 16px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     outline: none;
-  }
-  
-  .form-control:focus {
+    box-sizing: border-box;
+}
+
+.form-control:focus {
     border-color: #007bff;
-  }
-  
-  .btn {
-    padding: 10px;
-    font-size: 16px;
+}
+
+.btn {
+    padding: 12px;
+    font-size: 1.1rem;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .btn:hover {
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn:hover,
+.btn:focus {
     background-color: #0056b3;
-  }
-  
-  .error-text {
+}
+
+.error-text {
     color: red;
     margin-top: 10px;
     font-size: 14px;
-  }
+}
+
+@media (max-width: 700px) {
+    .search-account-container {
+        max-width: 98vw;
+        padding: 12px;
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+    .form-control {
+        font-size: 0.98rem;
+        padding: 8px;
+    }
+    .btn {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .search-account-container {
+        padding: 6px;
+    }
+    h1 {
+        font-size: 1.1rem;
+    }
+    .btn {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+}

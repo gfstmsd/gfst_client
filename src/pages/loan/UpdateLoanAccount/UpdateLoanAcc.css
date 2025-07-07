@@ -5,11 +5,13 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 .update-account-container h2 {
     color: #333;
     font-weight: 700;
     margin-bottom: 30px;
+    font-size: 2rem;
 }
 .form-container {
     display: flex;
@@ -23,6 +25,7 @@
     margin-bottom: 8px;
     display: block;
     color: #333;
+    font-size: 1rem;
 }
 .form-control {
     width: 100%;
@@ -31,6 +34,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 .form-control:focus {
     border-color: #007bff;
@@ -40,17 +44,46 @@
     background-color: #007bff;
     color: white;
     transition: background-color 0.3s ease;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus {
     background-color: #0056b3;
 }
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .update-account-container {
-        padding: 15px;
+        max-width: 98vw;
+        padding: 12px;
     }
-
-    .btn {
-        font-size: 16px;
+    .update-account-container h2 {
+        font-size: 1.3rem;
+    }
+    .form-group label {
+        font-size: 0.98rem;
+    }
+    .form-control {
+        font-size: 0.98rem;
+        padding: 8px;
+    }
+    .btn-primary {
+        font-size: 1rem;
         padding: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .update-account-container {
+        padding: 6px;
+    }
+    .update-account-container h2 {
+        font-size: 1.1rem;
+    }
+    .btn-primary {
+        font-size: 0.95rem;
+        padding: 8px;
     }
 }

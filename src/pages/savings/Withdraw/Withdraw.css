@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 /* Container for the withdraw form */
@@ -15,6 +16,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* Form title */
@@ -43,6 +45,7 @@
   font-weight: bold;
   display: block;
   margin-bottom: 5px;
+  font-size: 1rem;
 }
 
 /* Input field */
@@ -53,21 +56,66 @@
   border-radius: 5px;
   font-size: 16px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* Verify button */
 .withdraw-btn {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1.1rem;
   cursor: pointer;
   margin-top: 10px;
+  transition: background 0.2s;
 }
 
-.withdraw-btn:hover {
+.withdraw-btn:hover,
+.withdraw-btn:focus {
   background-color: #0056b3;
+}
+
+@media (max-width: 700px) {
+  .withdraw-wrapper {
+    margin-top: 60px;
+    padding: 0 8vw;
+  }
+  .withdraw-container {
+    max-width: 98vw;
+    padding: 12px;
+  }
+  .withdraw-title {
+    font-size: 1.3rem;
+  }
+  .withdraw-label {
+    font-size: 0.98rem;
+  }
+  .withdraw-input {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+  .withdraw-btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .withdraw-wrapper {
+    margin-top: 30px;
+    padding: 0 2vw;
+  }
+  .withdraw-container {
+    padding: 6px;
+  }
+  .withdraw-title {
+    font-size: 1.1rem;
+  }
+  .withdraw-btn {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
 }

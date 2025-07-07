@@ -562,3 +562,71 @@
     padding: 8px;
   }
 }
+
+@media (max-width: 900px) {
+  .branch-management, .branch-management-container {
+    max-width: 98vw;
+    padding: 24px 4vw;
+  }
+  .branch-management__form, .branch-management__form-group {
+    padding: 12px;
+  }
+  .branch-management__title {
+    font-size: 1.5rem;
+  }
+  .branch-management__subtitle {
+    font-size: 1.1rem;
+  }
+  .branch-management__input, .form-group input {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+  .branch-management__button, .submit-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .branch-management__table th, .branch-management__table td, .branch-registry-table th, .branch-registry-table td {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .branch-management, .branch-management-container {
+    padding: 10px 2vw;
+    margin: 30px auto 10px auto;
+  }
+  .branch-management__form, .branch-management__form-group {
+    padding: 6px;
+  }
+  .branch-management__title {
+    font-size: 1.1rem;
+  }
+  .branch-management__subtitle {
+    font-size: 1rem;
+  }
+  .branch-management__input, .form-group input {
+    font-size: 0.95rem;
+    padding: 6px;
+  }
+  .branch-management__button, .submit-button {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+  .branch-management__table-container, .branch-registry-container {
+    overflow-x: auto;
+    width: 100vw;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .branch-management__table, .branch-registry-table {
+    min-width: 400px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .branch-management__table th, .branch-management__table td, .branch-registry-table th, .branch-registry-table td {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+}

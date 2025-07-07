@@ -6,6 +6,7 @@
     background-color: #f4f4f9;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
   }
   
   /* Title */
@@ -27,6 +28,7 @@
     display: block;
     margin-bottom: 5px;
     color: #333;
+    font-size: 1rem;
   }
   
   .form-control {
@@ -72,21 +74,32 @@
   /* Buttons */
   .btn {
     display: inline-block;
-    padding: 10px 15px;
-    font-size: 16px;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .btn:hover,
+  .btn:focus {
+    opacity: 0.9;
   }
   
   .verify-btn {
     margin-top: 10px;
     background-color: #007bff;
     color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    width: 100%;
   }
   
-  .verify-btn:hover {
+  .verify-btn:hover,
+  .verify-btn:focus {
     background-color: #0056b3;
   }
   
@@ -95,9 +108,46 @@
     background-color: #dc3545;
     color: white;
     margin-top: 15px;
+    padding: 12px;
+    font-size: 1.1rem;
   }
   
-  .submit-btn:hover {
+  .submit-btn:hover,
+  .submit-btn:focus {
     background-color: #12c40c;
+  }
+  
+  @media (max-width: 700px) {
+    .close-investment-container {
+      max-width: 98vw;
+      padding: 12px;
+    }
+    .form-title {
+      font-size: 1.3rem;
+    }
+    .form-group label {
+      font-size: 0.98rem;
+    }
+    .form-control {
+      font-size: 0.98rem;
+      padding: 8px;
+    }
+    .btn, .verify-btn, .submit-btn {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .close-investment-container {
+      padding: 6px;
+    }
+    .form-title {
+      font-size: 1.1rem;
+    }
+    .btn, .verify-btn, .submit-btn {
+      font-size: 0.95rem;
+      padding: 8px;
+    }
   }
   

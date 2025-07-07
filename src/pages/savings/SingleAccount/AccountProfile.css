@@ -1,24 +1,27 @@
 .account-profile-container {
-    max-width: 1200px; /* Increased width for a more professional look */
-    margin: 100px auto 20px; /* Adjusted margin to prevent navbar overlap */
-    padding: 30px; /* More padding for better spacing */
+    max-width: 1200px;
+    margin: 100px auto 20px;
+    padding: 30px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
 }
+
 /* Account Details Section */
 .account-details {
     background: #ffffff;
-    padding: 8px; /* Reduce padding */
+    padding: 8px;
     border-radius: 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .account-details p {
-    font-size: 16px; /* Slightly smaller text */
-    margin: 5px 0; /* Reduce vertical spacing */
+    font-size: 16px;
+    margin: 5px 0;
     color: #333;
-    line-height: 1.2; /* Adjust line height for tighter spacing */
+    line-height: 1.2;
+    word-wrap: break-word;
 }
 
 .account-details strong {
@@ -27,16 +30,18 @@
 }
 
 h3 {
-    margin-top: 15px; /* Reduce margin */
+    margin-top: 15px;
     color: #0e0e0e;
-    font-size: 20px; /* Slightly smaller heading */
-    line-height: 0.; /* Reduce spacing between lines */
-    text-align: center; /* Center the text */
+    font-size: 20px;
+    text-align: center;
 }
 
-
-
 /* Table Styling */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -45,13 +50,15 @@ table {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    min-width: 600px;
 }
 
 th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 th {
@@ -70,6 +77,7 @@ tbody tr:nth-child(even) {
     display: flex;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 button {
@@ -79,6 +87,7 @@ button {
     font-size: 16px;
     border-radius: 6px;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
 }
 
 .print-btn {
@@ -96,30 +105,73 @@ button {
     color: white;
 }
 
-button:hover {
+button:hover,
+button:focus {
     opacity: 0.85;
 }
 
-/* Responsive Design */
+/* Tablets (≤1024px) */
 @media (max-width: 1024px) {
     .account-profile-container {
-        width: 90%; /* Slightly reduced width for smaller screens */
+        width: 90%;
     }
 }
 
+/* Tablets & Small Laptops (≤768px) */
 @media (max-width: 768px) {
     .account-profile-container {
         width: 95%;
         padding: 20px;
     }
-
     .action-buttons {
         flex-direction: column;
         align-items: center;
     }
+    button {
+        width: 80%;
+        margin-bottom: 8px;
+    }
+    .table-responsive {
+        min-width: 0;
+    }
+    table {
+        min-width: 400px;
+    }
+}
 
+/* Mobile (≤480px) */
+@media (max-width: 480px) {
+    .account-profile-container {
+        width: 98%;
+        padding: 15px;
+        margin-top: 70px;
+    }
+    .account-details p {
+        font-size: 14px;
+    }
+    th, td {
+        font-size: 12px;
+        padding: 8px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    .action-buttons {
+        gap: 10px;
+    }
     button {
         width: 100%;
-        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .table-responsive {
+        width: 100vw;
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        min-width: 320px;
     }
 }

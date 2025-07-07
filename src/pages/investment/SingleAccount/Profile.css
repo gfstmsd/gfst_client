@@ -5,6 +5,7 @@
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
 }
 
 /* Account Details Section */
@@ -33,6 +34,11 @@ h3 {
 }
 
 /* Table Styling */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -41,6 +47,7 @@ table {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 600px;
 }
 
 th, td {
@@ -75,6 +82,7 @@ button {
     font-size: 16px;
     border-radius: 6px;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
 }
 
 .print-btn {
@@ -92,7 +100,8 @@ button {
     color: white;
 }
 
-button:hover {
+button:hover,
+button:focus {
     opacity: 0.85;
 }
 
@@ -117,5 +126,49 @@ button:hover {
     button {
         width: 100%;
         margin-bottom: 8px;
+    }
+
+    .table-responsive {
+        min-width: 0;
+    }
+
+    table {
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .account-profile-container {
+        width: 98%;
+        padding: 15px;
+        margin-top: 70px;
+    }
+    .account-details p {
+        font-size: 14px;
+    }
+    th, td {
+        font-size: 12px;
+        padding: 8px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    .action-buttons {
+        gap: 10px;
+    }
+    button {
+        width: 100%;
+        font-size: 14px;
+    }
+    .table-responsive {
+        width: 100vw;
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        min-width: 320px;
     }
 }

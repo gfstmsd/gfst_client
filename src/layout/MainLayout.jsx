@@ -68,7 +68,7 @@ const Layout = ({ children }) => {
 
         <div className='main__content'>
           <Outlet />
-          {/* <Footer /> */}
+          {/* <Footer />  */}
         </div>
 
       </div>

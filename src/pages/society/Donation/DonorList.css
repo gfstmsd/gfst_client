@@ -2,11 +2,12 @@
 .donor-list-section {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 100px 20px 20px; /* Increased top padding to prevent navbar overlap */
+  padding: 100px 20px 20px;
   background-color: #f4f4f9;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
 }
 
 .donor-list-section h2 {
@@ -25,12 +26,15 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  box-sizing: border-box;
 }
 
 .donor-table th, .donor-table td {
-  padding: 10px;
+  padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .donor-table th {
@@ -43,43 +47,61 @@
 }
 
 /* Responsive styles */
+@media (max-width: 900px) {
+  .donor-list-section {
+    max-width: 98vw;
+    padding: 80px 4vw 16px;
+  }
+  .donor-table th, .donor-table td {
+    font-size: 0.98rem;
+    padding: 10px;
+  }
+}
+
 @media (max-width: 768px) {
+  .donor-list-section {
+    padding: 60px 2vw 10px;
+  }
   .donor-table {
     border: 0;
     width: 100%;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
-
   .donor-table th, .donor-table td {
     display: block;
-    padding: 10px;
+    padding: 10px 8px;
     text-align: right;
+    font-size: 0.97rem;
   }
-
   .donor-table th {
     background-color: #2980b9;
     color: white;
     position: relative;
   }
-
   .donor-table tr {
     margin-bottom: 10px;
     display: block;
     background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-
   .donor-table td {
     text-align: left;
     padding-left: 50%;
     position: relative;
+    min-height: 36px;
   }
-
   .donor-table td:before {
     content: attr(data-label);
     position: absolute;
     left: 10px;
     font-weight: bold;
+    font-size: 0.97rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
-
   .donor-table td:last-child {
     border-bottom: 1px solid #ddd;
   }
@@ -87,14 +109,23 @@
 
 @media (max-width: 480px) {
   .donor-list-section {
-    padding: 120px 10px 10px; /* Further increased padding for small screens */
+    padding: 40px 2vw 6px;
   }
-
   .donor-table th, .donor-table td {
-    font-size: 0.9em;
+    font-size: 0.92em;
+    padding: 8px 4px;
   }
-
   .donor-table td {
     padding-left: 40%;
+  }
+}
+
+@media (max-width: 350px) {
+  .donor-list-section {
+    padding: 20px 1vw 2px;
+  }
+  .donor-table th, .donor-table td {
+    font-size: 0.85em;
+    padding: 6px 2px;
   }
 }

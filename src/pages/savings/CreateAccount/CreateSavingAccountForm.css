@@ -4,11 +4,13 @@
   align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
 .saving-account-form-container h2 {
   margin-bottom: 20px;
   color: #333;
+  font-size: 2rem;
 }
 
 .saving-account-form {
@@ -19,6 +21,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 
 .saving-account-form-group {
@@ -30,6 +33,7 @@
   margin-bottom: 5px;
   font-weight: bold;
   color: #666;
+  font-size: 1rem;
 }
 
 .saving-account-form-control {
@@ -37,6 +41,8 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .saving-account-error {
@@ -47,15 +53,55 @@
 
 .saving-account-btn-primary {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s;
 }
 
-.saving-account-btn-primary:hover {
+.saving-account-btn-primary:hover,
+.saving-account-btn-primary:focus {
   background-color: #0069d9;
+}
+
+@media (max-width: 700px) {
+  .saving-account-form {
+    max-width: 98vw;
+    padding: 14px;
+  }
+  .saving-account-form-container {
+    padding: 10px;
+  }
+  .saving-account-form-container h2 {
+    font-size: 1.3rem;
+  }
+  .saving-account-form-group label {
+    font-size: 0.98rem;
+  }
+  .saving-account-form-control {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+  .saving-account-btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .saving-account-form {
+    padding: 6px;
+  }
+  .saving-account-form-container h2 {
+    font-size: 1.1rem;
+  }
+  .saving-account-btn-primary {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
 }
 

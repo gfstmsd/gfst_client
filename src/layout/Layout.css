@@ -63,28 +63,89 @@
 
 
 
- .main__container {
+.main__container {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #f5f7fa;
 }
 
 .main_app_container {
-    height: calc(100vh - 4rem);
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-areas: "area1 area1 area2 area2 area2 area2 area2 area2 area2 area2 area2 area2";
+    grid-template-columns: 250px 1fr;
+    grid-template-areas: "sidebar main";
+    flex: 1 1 auto;
+    min-height: calc(100vh - 70px); /* Adjust for navbar height */
+    transition: all 0.3s;
+}
 
-    .sidebar__container {
-        grid-area: area1;
+.sidebar__container {
+    grid-area: sidebar;
+    min-width: 250px;
+    transition: all 0.3s;
+}
+
+.main__content {
+    grid-area: main;
+    width: 100%;
+    min-width: 0;
+    padding: 24px 16px 16px 16px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 12px;
+    margin: 24px 16px 16px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+/* Responsive: Tablet */
+@media (max-width: 1024px) {
+    .main_app_container {
+        grid-template-columns: 70px 1fr;
     }
-    
+    .sidebar__container {
+        min-width: 70px;
+    }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .main_app_container {
+        display: flex;
+        flex-direction: column;
+        min-height: unset;
+    }
+    .sidebar__container {
+        position: fixed;
+        top: 70px;
+        left: -100vw;
+        width: 250px;
+        height: calc(100vh - 70px);
+        z-index: 200;
+        background: #1a2942;
+        transition: left 0.3s;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    }
+    .sidebar__container.active {
+        left: 0;
+    }
     .main__content {
-        grid-area: area2;
-        overflow-x: auto; 
-        height: 100%; 
-        white-space: nowrap; 
+        margin: 16px 0 0 0;
+        border-radius: 0;
+        padding: 16px 4vw;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .main__content {
+        padding: 8px 2vw;
+        margin: 8px 0 0 0;
+    }
+    .sidebar__container {
+        width: 100vw;
+        min-width: 0;
     }
 }  

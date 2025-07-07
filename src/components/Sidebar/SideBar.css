@@ -1,5 +1,3 @@
-
-
 .sidebar {
   width: 250px;
   min-height: 100vh;
@@ -10,9 +8,13 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   padding: 20px 0;
   overflow-y: auto;
+}
+
+.menu-toggle {
+  display: none;
 }
 
 /* Section styling */
@@ -136,7 +138,7 @@
 @media screen and (max-width: 1024px) {
   .sidebar {
     width: 70px;
-    overflow: visible;
+    min-width: 70px;
   }
   
   .sidebar:hover, 
@@ -197,111 +199,58 @@
 }
 
 /* Mobile adjustments */
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .sidebar {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    position: relative;
-    padding: 10px 0;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .section {
-    flex: 1;
-    margin: 0 2px;
-    min-width: 70px;
-  }
-  
-  .section h2 {
-    padding: 10px 5px;
-    flex-direction: column;
-    text-align: center;
-    font-size: 12px;
-  }
-  
-  .section h2 svg {
-    margin: 0 0 5px 0;
-    font-size: 18px;
-  }
-  
-  .section h2 span {
+    left: -100vw;
+    width: 250px;
+    min-width: 0;
+    height: 100vh;
+    top: 0;
+    z-index: 300;
+    transition: left 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    background: #1a2942;
     display: block;
-    font-size: 10px;
   }
-  
-  .section.expanded .dropdown-content {
-    position: absolute;
+  .sidebar.active {
     left: 0;
-    top: 100%;
-    width: 100%;
-    max-width: 250px;
-    z-index: 101;
   }
-  
-  /* Side menu toggle for very small screens */
-  @media screen and (max-width: 400px) {
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 250px;
-      height: 100vh;
-      flex-direction: column;
-      transition: left 0.3s ease;
-    }
-    
-    .sidebar.active {
-      left: 0;
-    }
-    
-    /* Add menu toggle button styles here */
-    .menu-toggle {
-      display: block;
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 102;
-      background: #1a2942;
-      padding: 8px;
-      border-radius: 4px;
-      color: white;
-      cursor: pointer;
-    }
-    
-    .section {
-      flex: 0 0 auto;
-      width: 100%;
-    }
-    
-    .section h2 {
-      flex-direction: row;
-      text-align: left;
-      padding: 15px 20px;
-      font-size: 16px;
-    }
-    
-    .section h2 svg {
-      margin-right: 12px;
-      margin-bottom: 0;
-    }
-    
-    .section h2 span {
-      display: inline;
-      font-size: 16px;
-    }
-    
-    .section.expanded .dropdown-content {
-      position: static;
-      width: 100%;
-      max-width: none;
-    }
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 400;
+    background: #1a2942;
+    padding: 8px 10px;
+    border-radius: 4px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .sidebar .contact-section {
+    position: static;
+    margin-top: 24px;
   }
 }
 
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100vw;
+    min-width: 0;
+    left: -100vw;
+  }
+  .sidebar.active {
+    left: 0;
+  }
+  .menu-toggle {
+    left: 8px;
+    top: 8px;
+    font-size: 22px;
+    padding: 6px 8px;
+  }
+}
 
 /* Contact section at the bottom */
 .contact-section {
@@ -326,7 +275,6 @@
 .contact-section .map-link:hover, .contact-section .developer-link:hover {
   text-decoration: underline;
 }
-
 
 /* Touch-friendly adjustments */
 @media (hover: none) {

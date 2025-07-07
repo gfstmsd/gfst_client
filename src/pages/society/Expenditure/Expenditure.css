@@ -2,11 +2,12 @@
 .expenditure-section {
   max-width: 500px;
   margin: 0 auto;
-  padding: 100px 20px 20px; /* Increased top padding to prevent navbar overlap */
+  padding: 100px 20px 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
 }
 
 .expenditure-section h2 {
@@ -29,27 +30,33 @@
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  font-size: 1rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 /* Submit button */
 .submit-button {
   background-color: #c0392b;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: background 0.2s;
 }
 
-.submit-button:hover {
+.submit-button:hover,
+.submit-button:focus {
   background-color: #a83227;
 }
 
@@ -77,6 +84,7 @@
   border-radius: 5px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .expenditure-slip h3 {
@@ -91,30 +99,56 @@
 .print-button {
   background-color: #3498db;
   color: white;
-  padding: 8px 12px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1rem;
+  width: 100%;
+  transition: background 0.2s;
 }
 
-.print-button:hover {
+.print-button:hover,
+.print-button:focus {
   background-color: #2980b9;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .expenditure-section {
-    padding: 120px 15px 15px;
+    max-width: 98vw;
+    padding: 60px 8vw 12px;
+  }
+  .expenditure-section h2 {
+    font-size: 1.3rem;
+  }
+  .form-group label {
+    font-size: 0.98rem;
+  }
+  .form-group input {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+  .submit-button, .print-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .expenditure-slip {
+    padding: 12px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .expenditure-section {
-    padding: 130px 10px 10px;
+    padding: 30px 2vw 6px;
   }
-
+  .expenditure-section h2 {
+    font-size: 1.1rem;
+  }
+  .submit-button, .print-button {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
   .expenditure-slip {
-    padding: 15px;
+    padding: 6px;
   }
 }

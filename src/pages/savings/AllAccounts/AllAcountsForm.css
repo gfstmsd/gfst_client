@@ -2,6 +2,7 @@
 .all-accounts-container {
     padding-top: 70px; /* Adjust this value according to navbar height */
     margin-bottom: 40px;
+    box-sizing: border-box;
 }
 
 /* Search bar */
@@ -28,6 +29,9 @@ h1 {
     margin-top: 20px;
     border-collapse: collapse;
     font-size: 1rem;
+    overflow-x: auto;
+    display: block;
+    max-width: 100vw;
 }
 
 .table th,
@@ -35,6 +39,7 @@ h1 {
     padding: 6px;
     text-align: center;
     vertical-align: middle;
+    word-break: break-word;
 }
 
 .table thead {
@@ -77,14 +82,20 @@ h1 {
 /* Print button styling */
 .print-btn {
     display: block;
-    width: 80px;
-    padding: 8px;
+    width: 100px;
+    max-width: 90vw;
+    padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 20px;
     font-size: 16px;
     cursor: pointer;
+    margin: 0 auto;
+    transition: background 0.2s;
+}
+.print-btn:hover, .print-btn:focus {
+    background-color: #0056b3;
 }
 
 .print-btn-container {
@@ -121,5 +132,58 @@ h1 {
 
     .print-btn, .print-btn-container {
         display: none !important;
+    }
+}
+
+/* Responsive All Accounts Page */
+@media (max-width: 900px) {
+    .search-bar {
+        width: 80%;
+        padding-top: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .all-accounts-container {
+        padding-top: 60px;
+        margin-bottom: 16px;
+    }
+    .search-bar {
+        width: 98%;
+        padding-top: 12px;
+    }
+    h1 {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .table {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .table {
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+    .table th, .table td {
+        padding: 4px;
+    }
+}
+
+@media (max-width: 600px) {
+    .print-btn {
+        font-size: 1rem;
+        padding: 8px;
+        width: 90vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .print-btn-container {
+        margin-top: 10px;
     }
 }
