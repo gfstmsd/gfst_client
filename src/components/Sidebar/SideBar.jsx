@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle, faCoins, faWallet, faListAlt, faSearch, faClipboardList,
   faMoneyBillWave, faChartLine, faHandHoldingUsd, faChartPie, faUniversity,
-  faUsers, faWindowClose, faBars, faTimes
+  faUsers, faWindowClose, faBars, faTimes, faUserShield, faTachometerAlt, faInfoCircle, faEnvelope, faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import "./SideBar.css";
@@ -12,6 +12,7 @@ import "./SideBar.css";
 const SideBar = () => {
   const [openSection, setOpenSection] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouseEnter = (section) => setOpenSection(section);
   const handleMouseLeave = () => setOpenSection(null);
@@ -22,6 +23,16 @@ const SideBar = () => {
   const handleNavClick = () => {
     if (window.innerWidth <= 768) closeMenu();
   };
+
+  // Logout handler for sidebar
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    sessionStorage.clear();
+    navigate("/login", { replace: true });
+  };
+
+  // Helper to check if mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   return (
     <>
@@ -113,6 +124,27 @@ const SideBar = () => {
             </div>
           )}
         </div>
+
+        {/* Mobile-only: Navbar items */}
+        {isMobile && (
+          <div className="mobile-navbar-items">
+            <NavLink to="/app/society/adminpanel" onClick={handleNavClick} className="mobile-nav-link">
+              <FontAwesomeIcon icon={faUserShield} /> <span>Admin Panel</span>
+            </NavLink>
+            <NavLink to="/app/society/dashboard" onClick={handleNavClick} className="mobile-nav-link">
+              <FontAwesomeIcon icon={faTachometerAlt} /> <span>Dashboard</span>
+            </NavLink>
+            <NavLink to="/app/society/about" onClick={handleNavClick} className="mobile-nav-link">
+              <FontAwesomeIcon icon={faInfoCircle} /> <span>About</span>
+            </NavLink>
+            <NavLink to="/app/society/contact" onClick={handleNavClick} className="mobile-nav-link">
+              <FontAwesomeIcon icon={faEnvelope} /> <span>Contact</span>
+            </NavLink>
+            <button onClick={() => { handleLogout(); closeMenu(); }} className="mobile-nav-link logout-button">
+              <FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span>
+            </button>
+          </div>
+        )}
 
         <div className="contact-section">
           <p>© 2025 Golden Future Supportive Trust. All Rights Reserved.</p>
