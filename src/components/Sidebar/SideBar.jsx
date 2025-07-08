@@ -60,7 +60,7 @@ const SideBar = () => {
               <NavLink to="/app/savings/all" onClick={handleNavClick}><FontAwesomeIcon icon={faListAlt} /> All Accounts</NavLink>
               <NavLink to="/app/savings/search-account" onClick={handleNavClick}><FontAwesomeIcon icon={faSearch} /> Search Account</NavLink>
               <NavLink to="/app/savings/audit" onClick={handleNavClick}><FontAwesomeIcon icon={faClipboardList} /> Transactions</NavLink>
-              <NavLink to="/app/savings/transfer" onClick={handleNavClick}><FontAwesomeIcon icon={faMoneyBillWave} /> Money Transfer</NavLink>
+              <NavLink to="/app/savings/money-transfer" onClick={handleNavClick}><FontAwesomeIcon icon={faMoneyBillWave} /> Money Transfer</NavLink>
             </div>
           )}
         </div>

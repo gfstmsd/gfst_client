@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import api from '../../../api/index';
 import './Withdraw.css';
@@ -13,9 +12,14 @@ const Withdraw = () => {
   const [accountName, setAccountName] = useState('');
   const [accountBalance, setAccountBalance] = useState('');
   const [remarks, setRemarks] = useState('withdraw');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    const confirmed = window.confirm('Are you sure you want to proceed?');
+    if (!confirmed) return;
+    setIsSubmitting(true);
     try {
       const response = await api.post('/api/transaction/withdraw/', {
         accountNo: account,
@@ -41,6 +45,8 @@ const Withdraw = () => {
       }
     } catch (err) {
       setError('An error occurred during the transaction.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -162,7 +168,7 @@ const Withdraw = () => {
                 />
               </div>
 
-              <button type="submit" className="btn submit-btn">
+              <button type="submit" className="btn submit-btn" disabled={isSubmitting}>
                 Submit Withdraw
               </button>
             </>

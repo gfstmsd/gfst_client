@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react'; 
 import api from '../../../api/index';
 import './Deposit.css';
@@ -14,9 +12,14 @@ const Deposit = () => {
   const [accountName, setAccountName] = useState('');
   const [accountBalance, setAccountBalance] = useState('');
   const [remarks, setRemarks] = useState('deposit'); // Default to 'deposit'
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    const confirmed = window.confirm('Are you sure you want to proceed?');
+    if (!confirmed) return;
+    setIsSubmitting(true);
     try {
       const response = await api.post('/api/transaction/deposit/', {
         accountNo: account,
@@ -44,6 +47,8 @@ const Deposit = () => {
       }
     } catch (err) {
       setError('An error occurred during the transaction.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -169,9 +174,7 @@ const Deposit = () => {
                 />
               </div>
 
-              <button type="submit" className="btn submit-btn">
-                Submit Deposit
-              </button>
+              <button type="submit" className="btn submit-btn" disabled={isSubmitting}>Submit Deposit</button>
             </>
           )}
         </form>

@@ -79,7 +79,7 @@ function AllAccounts() {
         className="form-control mb-4 search-bar"
       />
 
-      <div id="accounts-table">
+      <div className="table-responsive" id="accounts-table">
         <table className="table table-bordered table-hover">
           <thead className="thead-dark">
             <tr>

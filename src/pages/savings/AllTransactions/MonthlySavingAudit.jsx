@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import api from '../../../api/index';
 import { Link } from 'react-router-dom';
@@ -104,7 +103,7 @@ function MonthlySavingAudit() {
         </div>
       </div>
 
-      <div className="table-responsive">
+      <div className="table-responsive" id="accounts-table">
         <table className="table table-bordered table-hover" id="accounts-table">
           <thead className="thead-dark">
             <tr>

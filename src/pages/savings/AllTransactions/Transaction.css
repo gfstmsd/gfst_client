@@ -133,3 +133,67 @@ td a {
     padding: 10px 0;
   }
 }
+
+/* Ensure content is pushed down to avoid being covered by navbar */
+.all-accounts-container {
+    padding-top: 70px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Table responsive wrapper */
+.table-responsive {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table {
+        min-width: 700px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .table {
+        font-size: 0.85rem;
+        margin-top: 10px;
+        min-width: 600px;
+    }
+    .table th, .table td {
+        padding: 4px;
+    }
+}
+
+button {
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 4px;
+    border: none;
+    background: #1976d2;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+button:hover, button:focus {
+    background: #115293;
+}
+  

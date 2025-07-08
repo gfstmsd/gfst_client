@@ -1,8 +1,12 @@
 /* Ensure content is pushed down to avoid being covered by navbar */
 .all-accounts-container {
-    padding-top: 70px; /* Adjust this value according to navbar height */
+    padding-top: 70px;
     margin-bottom: 40px;
     box-sizing: border-box;
+    width: 100vw;
+    max-width: 100vw;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Search bar */
@@ -23,15 +27,20 @@ h1 {
     margin-top: 20px;
 }
 
-/* Table styling */
+/* Table responsive wrapper */
+.table-responsive {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
 .table {
-    width: 100%;
-    margin-top: 20px;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
     border-collapse: collapse;
     font-size: 1rem;
-    overflow-x: auto;
-    display: block;
-    max-width: 100vw;
 }
 
 .table th,
@@ -141,6 +150,13 @@ h1 {
         width: 80%;
         padding-top: 24px;
     }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table {
+        min-width: 700px;
+        font-size: 0.95rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -156,18 +172,10 @@ h1 {
         font-size: 1.2rem;
         margin-top: 10px;
     }
-}
-
-@media (max-width: 900px) {
-    .table {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 600px) {
     .table {
         font-size: 0.85rem;
         margin-top: 10px;
+        min-width: 600px;
     }
     .table th, .table td {
         padding: 4px;

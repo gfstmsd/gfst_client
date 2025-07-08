@@ -8,12 +8,17 @@ function DeleteSavingsAcc() {
   const [AadharNo, setAadharNo] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAadharChange = (e) => {
     setAadharNo(e.target.value);
   };
 
   const handleDelete = async () => {
+    if (isSubmitting) return;
+    const confirmed = window.confirm('Are you sure you want to proceed?');
+    if (!confirmed) return;
+    setIsSubmitting(true);
     try {
       const accountDetails = await api.get(`/api/savings/${accountNo}`);
 
@@ -27,6 +32,8 @@ function DeleteSavingsAcc() {
     } catch (error) {
       console.error('Error deleting account:', error);
       setError('Error deleting account.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -48,7 +55,7 @@ function DeleteSavingsAcc() {
         />
       </div>
 
-      <button onClick={handleDelete} className="btn btn-danger btn-block mt-3">Confirm Delete</button>
+      <button onClick={handleDelete} className="btn btn-danger btn-block mt-3" disabled={isSubmitting}>Confirm Delete</button>
     </div>
   );
 }

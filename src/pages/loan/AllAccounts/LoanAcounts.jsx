@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 import { Link } from 'react-router-dom';
@@ -81,7 +80,7 @@ function LoanAccounts() {
         className="form-control mb-4 search-bar"
       />
       
-      <div id="accounts-table">
+      <div className="table-responsive" id="accounts-table">
         <table className="table table-bordered table-hover">
           <thead className="thead-dark">
             <tr>

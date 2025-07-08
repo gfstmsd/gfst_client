@@ -14,6 +14,7 @@ function UpdateSavingsAcc() {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchAccountDetails = async () => {
@@ -39,6 +40,10 @@ function UpdateSavingsAcc() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    const confirmed = window.confirm('Are you sure you want to proceed?');
+    if (!confirmed) return;
+    setIsSubmitting(true);
     try {
       await api.put(`/api/savings/${accountNo}`, accountDetails);
       alert('Account updated successfully');
@@ -46,6 +51,7 @@ function UpdateSavingsAcc() {
     } catch (err) {
       console.error('Error updating account:', err);
       setError('Error updating account');
+      setIsSubmitting(false);
     }
   };
 
@@ -112,7 +118,7 @@ function UpdateSavingsAcc() {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary btn-block">Update Account</button>
+        <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting}>Update Account</button>
       </form>
     </div>
   );

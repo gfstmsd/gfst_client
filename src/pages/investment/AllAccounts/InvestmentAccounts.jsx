@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api/index';
@@ -77,7 +76,7 @@ function InvestmentAccounts() {
         className="form-control mb-4 search-bar"
       />
 
-      <div id="accounts-table">
+      <div className="table-responsive" id="accounts-table">
         <table className="table table-bordered table-hover">
           <thead className="thead-dark">
             <tr>
