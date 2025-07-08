@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import './CreateLoanAccountForm.css';
 import api from '../../../api';
@@ -80,7 +79,8 @@ const CreateLoanAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-
+    const confirmed = window.confirm('Are you sure you want to create this loan account?');
+    if (!confirmed) return;
     try {
         const result = await api.post('/api/loan/create-account', { 
             date, 
@@ -97,11 +97,9 @@ const CreateLoanAccount = () => {
 
         if (result.data.success) {
             alert("Account created successfully");
-
+            setError(null);
             const { accountNo } = result.data.data;
-
             printLoanSlip(accountNo, name, loanAmount, date, AadharNo, mobileNo, Address, timePeriod);
-
             setDate('');
             setName('');
             setMobileNo('');

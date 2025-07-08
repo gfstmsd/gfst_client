@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../../api';
@@ -44,20 +43,23 @@ function InvestmentAccProfile() {
   }, [accountNo]);
   
   const handlePrint = () => {
-    const printContents = document.getElementById('account-profile').outerHTML;
+    // Only print the transaction table
+    const tableDiv = document.querySelector('.table-responsive');
+    const printContents = tableDiv ? tableDiv.outerHTML : '';
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
       <html>
       <head>
-        <title>Investment Account Profile</title>
+        <title>Investment Transactions</title>
         <style>
           table { width: 100%; border-collapse: collapse; }
           th, td { border: 1px solid black; padding: 8px; text-align: left; }
           th { background-color: #f2f2f2; }
-          .print-btn, .update-btn, .delete-btn { display: none !important; }
         </style>
       </head>
-      <body>${printContents}</body>
+      <body>
+        ${printContents}
+      </body>
       </html>
     `);
     printWindow.document.close();
@@ -85,30 +87,32 @@ function InvestmentAccProfile() {
         <p>Total Profit Return: ₹<strong>{accountDetails.profit}</strong></p>       
       </div>
       <h3>Transaction History</h3>
-      <table className="table table-bordered table-hover">
-        <thead className="thead-dark">
-          <tr>
-            <th>Date</th>
-            <th>Transaction ID</th>
-            <th>Investment Amount</th>
-            <th>Profit</th>            
-            <th>Investment Return</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.length > 0 ? transactions.map((transaction) => (
-            <tr key={transaction._id}>
-              <td>{formatMongoDate(transaction.createdAt)}</td>
-              <td>{transaction.transactionId}</td>             
-              <td>{transaction.typeOfTransaction === 'investment' ? transaction.amount : ""}</td>
-              <td>{transaction.typeOfTransaction === 'profit' ? transaction.amount : ""}</td>
-              <td>{transaction.typeOfTransaction === 'closeinvestment' ? transaction.amount : ""}</td>
-              <td>{transaction.remarks}</td>
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="thead-dark">
+            <tr>
+              <th>Date</th>
+              <th>Transaction ID</th>
+              <th>Investment Amount</th>
+              <th>Profit</th>            
+              <th>Investment Return</th>
+              <th>Remarks</th>
             </tr>
-          )) : <tr><td colSpan="6">No transactions available</td></tr>}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {transactions.length > 0 ? transactions.map((transaction) => (
+              <tr key={transaction._id}>
+                <td>{formatMongoDate(transaction.createdAt)}</td>
+                <td>{transaction.transactionId}</td>             
+                <td>{transaction.typeOfTransaction === 'investment' ? transaction.amount : ""}</td>
+                <td>{transaction.typeOfTransaction === 'profit' ? transaction.amount : ""}</td>
+                <td>{transaction.typeOfTransaction === 'closeinvestment' ? transaction.amount : ""}</td>
+                <td>{transaction.remarks}</td>
+              </tr>
+            )) : <tr><td colSpan="6">No transactions available</td></tr>}
+          </tbody>
+        </table>
+      </div>
       
       <div className="action-buttons">
         <button onClick={handlePrint} className="print-btn">Print</button>

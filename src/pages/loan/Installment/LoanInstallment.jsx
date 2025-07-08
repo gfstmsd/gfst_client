@@ -16,6 +16,8 @@ const LoanInstallment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const confirmed = window.confirm('Are you sure you want to submit this EMI payment?');
+    if (!confirmed) return;
     const depositAmount = parseFloat(deposit);
     const remainingLoan = parseFloat(loanAmount) - depositAmount;
 

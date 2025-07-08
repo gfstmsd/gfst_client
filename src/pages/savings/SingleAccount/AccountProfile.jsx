@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../../api/index';
@@ -88,28 +87,30 @@ function AccountProfile() {
         <p>Available Balance: ₹<strong>{accountDetails.balance}</strong></p>     
       </div>
       <h3>Transaction History</h3>
-      <table className="table table-bordered table-hover">
-        <thead className="thead-dark">
-          <tr>
-            <th>Date</th>
-            <th>Transaction ID</th>
-            <th>Credit</th>
-            <th>Debit</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.length > 0 ? transactions.map((transaction) => (
-            <tr key={transaction._id}>
-              <td>{formatMongoDate(transaction.createdAt)}</td>
-              <td>{transaction.transactionId}</td>
-              <td>{transaction.typeOfTransaction === 'deposit' || transaction.typeOfTransaction === 'transfer_credit' ? transaction.amount : ""}</td>
-              <td> {transaction.typeOfTransaction === 'withdraw' || transaction.typeOfTransaction === 'transfer_debit' ? transaction.amount : ""}</td>
-              <td>{transaction.remarks}</td>
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="thead-dark">
+            <tr>
+              <th>Date</th>
+              <th>Transaction ID</th>
+              <th>Credit</th>
+              <th>Debit</th>
+              <th>Remarks</th>
             </tr>
-          )) : <tr><td colSpan="5">No transactions available</td></tr>}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {transactions.length > 0 ? transactions.map((transaction) => (
+              <tr key={transaction._id}>
+                <td>{formatMongoDate(transaction.createdAt)}</td>
+                <td>{transaction.transactionId}</td>
+                <td>{transaction.typeOfTransaction === 'deposit' || transaction.typeOfTransaction === 'transfer_credit' ? transaction.amount : ""}</td>
+                <td> {transaction.typeOfTransaction === 'withdraw' || transaction.typeOfTransaction === 'transfer_debit' ? transaction.amount : ""}</td>
+                <td>{transaction.remarks}</td>
+              </tr>
+            )) : <tr><td colSpan="5">No transactions available</td></tr>}
+          </tbody>
+        </table>
+      </div>
 
       <div className="action-buttons">
         <button onClick={handlePrint} className="print-btn">Print</button>

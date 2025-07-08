@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../../api/index';
@@ -16,11 +14,13 @@ function DeleteInvestmentAcc() {
   };
 
   const handleDelete = async () => {
+    const confirmed = window.confirm('Are you sure you want to delete this investment account?');
+    if (!confirmed) return;
     try {
       const accountDetails = await api.get(`/api/investment/${accountNo}`);
-
       if (accountDetails.data.data.AadharNo === AadharNo) {
         await api.delete(`/api/investment/${AadharNo}`);
+        setError(''); // Clear any previous error
         alert('Account deleted successfully.');
         navigate('/app/investment/all');
       } else {

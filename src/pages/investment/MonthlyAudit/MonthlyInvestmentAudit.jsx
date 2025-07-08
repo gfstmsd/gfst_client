@@ -54,7 +54,26 @@ function MonthlyInvestmentAudit() {
   }, [searchQuery, startDate, endDate, users]);
 
   const handlePrint = () => {
-    window.print();
+    const tableDiv = document.getElementById('accounts-table');
+    const printContents = tableDiv ? tableDiv.outerHTML : '';
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+      <head>
+        <title>Investment Transactions</title>
+        <style>
+          table { width: 100%; border-collapse: collapse; }
+          th, td { border: 1px solid black; padding: 8px; text-align: left; }
+          th { background-color: #f2f2f2; }
+        </style>
+      </head>
+      <body>
+        ${printContents}
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
   };
 
 

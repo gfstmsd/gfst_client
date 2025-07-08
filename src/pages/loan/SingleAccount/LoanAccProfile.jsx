@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../../api';
@@ -46,17 +45,18 @@ function LoanAccProfile() {
   }, [accountNo]);
 
   const handlePrint = () => {
-    const printContents = document.getElementById('account-profile').outerHTML;
+    // Only print the transaction table
+    const tableDiv = document.querySelector('.table-responsive');
+    const printContents = tableDiv ? tableDiv.outerHTML : '';
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
       <html>
       <head>
-        <title>Loan Account Profile</title>
+        <title>Loan Transactions</title>
         <style>
           table { width: 100%; border-collapse: collapse; }
           th, td { border: 1px solid black; padding: 8px; text-align: left; }
           th { background-color: #f2f2f2; }
-          .print-btn, .update-btn, .delete-btn { display: none !important; }
         </style>
       </head>
       <body>
@@ -90,38 +90,40 @@ function LoanAccProfile() {
         <p>EMI Amount: ₹<strong>{accountDetails.emiAmount}</strong></p>
       </div>
       <h3>Transaction History</h3>
-      <table className="table table-bordered table-hover">
-        <thead className="thead-dark">
-          <tr>
-            <th>Date</th>
-            <th>Transaction ID</th>
-            <th>EMI</th>
-            <th>Loan Taken</th>
-            <th>Time Period (Months)</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.length > 0 ? transactions.map((transaction) => (
-            <tr key={transaction._id}>
-              <td>{formatMongoDate(transaction.createdAt)}</td>
-              <td>{transaction.transactionId}</td>
-              <td>
-                {transaction.typeOfTransaction && transaction.typeOfTransaction.toLowerCase() === 'emi'
-                  ? `₹${transaction.amount}`
-                  : ""}
-              </td>
-              <td>
-                {transaction.typeOfTransaction && transaction.typeOfTransaction.toLowerCase() === 'loan'
-                  ? `₹${transaction.amount}`
-                  : ""}
-              </td>
-              <td>{transaction.timePeriod || accountDetails.timePeriod || "N/A"}</td>
-              <td>{transaction.remarks}</td>
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="thead-dark">
+            <tr>
+              <th>Date</th>
+              <th>Transaction ID</th>
+              <th>EMI</th>
+              <th>Loan Taken</th>
+              <th>Time Period (Months)</th>
+              <th>Remarks</th>
             </tr>
-          )) : <tr><td colSpan="6">No transactions available</td></tr>}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {transactions.length > 0 ? transactions.map((transaction) => (
+              <tr key={transaction._id}>
+                <td>{formatMongoDate(transaction.createdAt)}</td>
+                <td>{transaction.transactionId}</td>
+                <td>
+                  {transaction.typeOfTransaction && transaction.typeOfTransaction.toLowerCase() === 'emi'
+                    ? `₹${transaction.amount}`
+                    : ""}
+                </td>
+                <td>
+                  {transaction.typeOfTransaction && transaction.typeOfTransaction.toLowerCase() === 'loan'
+                    ? `₹${transaction.amount}`
+                    : ""}
+                </td>
+                <td>{transaction.timePeriod || accountDetails.timePeriod || "N/A"}</td>
+                <td>{transaction.remarks}</td>
+              </tr>
+            )) : <tr><td colSpan="6">No transactions available</td></tr>}
+          </tbody>
+        </table>
+      </div>
       <div className="action-buttons">
         <button onClick={handlePrint} className="print-btn">Print</button>
         <button onClick={handleUpdate} className="update-btn">Update</button>

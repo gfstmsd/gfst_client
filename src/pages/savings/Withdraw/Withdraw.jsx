@@ -17,7 +17,7 @@ const Withdraw = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
-    const confirmed = window.confirm('Are you sure you want to proceed?');
+    const confirmed = window.confirm('Are you sure you want to withdraw this amount?');
     if (!confirmed) return;
     setIsSubmitting(true);
     try {
@@ -26,17 +26,16 @@ const Withdraw = () => {
         amount: withdraw,
         remarks,
       });
+      console.log('Withdraw API response:', response);
       if (response.data.success) {
         const newBalance = parseFloat(accountBalance) - parseFloat(withdraw);
-
+        setError(null);
         alert('Transaction successful!');
         printSlip(accountName, withdraw, newBalance, date);
-
         setAccount('');
         setDate(new Date().toLocaleDateString());
         setWithdraw('');
         setRemarks('withdraw');
-        setError(null);
         setIsVerified(false);
         setAccountName('');
         setAccountBalance('');

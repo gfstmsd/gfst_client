@@ -53,7 +53,8 @@ const MoneyTransfer = () => {
 
   const handleTransfer = async (e) => {
     e.preventDefault();
-
+    const confirmed = window.confirm('Are you sure you want to transfer this amount?');
+    if (!confirmed) return;
     if (parseFloat(transferAmount) > parseFloat(senderBalance)) {
       setError("Insufficient balance.");
       return;
@@ -65,15 +66,13 @@ const MoneyTransfer = () => {
         toAccount: receiverAccount,
         amount: transferAmount,
       });
-
+      console.log('Money Transfer API response:', response);
       if (response.data.success) {
         const newSenderBalance = parseFloat(senderBalance) - parseFloat(transferAmount);
-
+        setError(null);
         alert("Money transferred successfully!");
-
         // Generate the print slip
         printSlip(senderName, senderAccount, receiverName, receiverAccount, transferAmount, newSenderBalance);
-
         setSenderAccount("");
         setReceiverAccount("");
         setTransferAmount("");
@@ -82,7 +81,6 @@ const MoneyTransfer = () => {
         setSenderName("");
         setSenderBalance("");
         setReceiverName("");
-        setError(null);
       } else {
         setError(response.data.message || "Transaction failed.");
       }

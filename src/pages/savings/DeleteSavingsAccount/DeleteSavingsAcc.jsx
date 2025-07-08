@@ -15,15 +15,13 @@ function DeleteSavingsAcc() {
   };
 
   const handleDelete = async () => {
-    if (isSubmitting) return;
-    const confirmed = window.confirm('Are you sure you want to proceed?');
+    const confirmed = window.confirm('Are you sure you want to delete this savings account?');
     if (!confirmed) return;
-    setIsSubmitting(true);
     try {
       const accountDetails = await api.get(`/api/savings/${accountNo}`);
-
       if (accountDetails.data.data.AadharNo === AadharNo) {
         await api.delete(`/api/savings/${AadharNo}`);
+        setError(''); // Clear any previous error
         alert('Account deleted successfully.');
         navigate('/app/savings/all');
       } else {
@@ -32,8 +30,6 @@ function DeleteSavingsAcc() {
     } catch (error) {
       console.error('Error deleting account:', error);
       setError('Error deleting account.');
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
