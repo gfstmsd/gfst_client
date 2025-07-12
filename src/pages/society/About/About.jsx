@@ -1,9 +1,11 @@
-import React from 'react';
+
 import './About.css';
 import logo from '../../../assets/icons/logo.svg';
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 function About() {
   return (
+    <>
     <div className="about-container">
       <div className="logo-con">
         <img src={logo} alt="GFST Logo" className="logo" />
@@ -25,12 +27,39 @@ function About() {
           Some people today are helpless due to the evolution of oppression. The so-called globalization
           has made them oppressed. Who will be the Messiah of the oppressed? Who will wipe their tears?
           To establish justice in the world Even those who were responsible have failed to stick to the
-          path today. In God's judgment they have lost their kingdom. These tyrants who set the course of
+          path today. InGod&apos;s judgment they have lost their kingdom. These tyrants who set the course of
           globalization have gradually taken over the infrastructure of the entire world. Let all good men
           unite in this world war.
         </p>
       </div>
     </div>
+    <div className="contact-section">
+            <h4>Contact with Us</h4>
+            <p>
+              <FaMapMarkerAlt />{" "}
+              <a
+                href="https://maps.app.goo.gl/6vDD1xGuAweKyEVHA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="map-link"
+              >
+                Office Location
+              </a>
+            </p>
+            <p>© 2025 Golden Future Supportive Trust. All Rights Reserved.</p>
+            <p>
+              Developed by:{"  "}
+              <a
+                href="https://jakirulsk.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="developer-link"
+              >
+                Jakirul Sk
+              </a>
+            </p>
+          </div>
+          </>
   );
 }
 

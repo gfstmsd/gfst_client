@@ -42,15 +42,15 @@
 
 
 
-import React from 'react'
+// import React from 'react'
 import SideBar from '../components/Sidebar/SideBar'
 import Navbar from '../components/Navbar/Navbar'
-import Footer from '../components/Footer/Footer'
+// import Footer from '../components/Footer/Footer'
 import { Outlet } from 'react-router-dom'
 import './Layout.css'
-import AdminPanel from '../pages/society/Admin/AdminPanel'
+// import AdminPanel from '../pages/society/Admin/AdminPanel'
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="main__container">
       <Navbar />

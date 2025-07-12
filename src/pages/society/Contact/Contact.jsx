@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import "./Contact.css";
 import logo from "../../../assets/icons/logo.svg";
