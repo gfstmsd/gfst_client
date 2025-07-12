@@ -179,7 +179,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import api from '../../../api/index';
 import './Profit.css';
 import logo from '../../../assets/icons/logo.svg';
@@ -194,47 +194,39 @@ const Profit = () => {
   const [accountName, setAccountName] = useState('');
   const [accountBalance, setAccountBalance] = useState('');
   const [investmentAmount, setInvestmentAmount] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (loading) return;
+    setShowConfirm(true);
+  };
 
-    if (!profit || isNaN(parseFloat(profit))) {
-      setError('Please enter a valid profit amount.');
-      return;
-    }
-
-    if (parseFloat(profit) <= 0) {
-      setError('Profit amount must be greater than zero.');
-      return;
-    }
-
+  const handleConfirm = async () => {
+    setShowConfirm(false);
+    setError(null);
+    setLoading(true);
     try {
       const response = await api.post('/api/transaction/profit/', {
         accountNo: account,
         amount: parseFloat(profit)
       });
-
       if (response.data.success) {
-        const newBalance = parseFloat(accountBalance) + parseFloat(profit);
         alert('Profit transaction successful!');
-
-        // Generate the print slip
-        printSlip(accountName, profit, investmentAmount, newBalance, date);
-
-        // Reset form state
-        setAccount('');
-        setDate(new Date().toLocaleDateString());
         setProfit('');
-        setError(null);
-        setIsVerified(false);
-        setAccountName('');
-        setAccountBalance('');
-        setInvestmentAmount('');
       } else {
-        setError(response.data.message || 'Transaction failed. Please try again.');
+        setError(response.data.message);
       }
     } catch (err) {
-      setError('An error occurred during the transaction.');
+      setError('An error occurred during the profit calculation.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -363,8 +355,21 @@ const Profit = () => {
                 />
               </div>
 
-              <button type="submit" className="btn submit-btn">Submit Profit</button>
+              <button type="submit" className="btn submit-btn" disabled={loading}>
+                {loading ? 'Processing...' : 'Submit Profit'}
+              </button>
             </>
+          )}
+          {showConfirm && (
+            <div style={{
+              position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+            }}>
+              <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+                <p>Are you sure you want to add profit to this investment account?</p>
+                <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+                <button onClick={() => setShowConfirm(false)}>No</button>
+              </div>
+            </div>
           )}
         </form>
       </div>

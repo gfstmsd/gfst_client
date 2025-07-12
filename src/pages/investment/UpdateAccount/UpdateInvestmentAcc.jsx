@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 import api from '../../../api';
@@ -15,6 +15,14 @@ function UpdateInvestmentAcc() {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
 
   useEffect(() => {
     const fetchAccountDetails = async () => {
@@ -38,8 +46,16 @@ function UpdateInvestmentAcc() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (loading) return;
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = async () => {
+    setShowConfirm(false);
+    setError(null);
+    setLoading(true);
     try {
       await api.put(`/api/investment/${accountNo}`, accountDetails);
       alert('Account updated successfully');
@@ -47,6 +63,8 @@ function UpdateInvestmentAcc() {
     } catch (err) {
       console.error('Error updating account:', err);
       setError('Error updating account');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,6 +131,17 @@ function UpdateInvestmentAcc() {
       </div> */}
       <button type="submit">Update Account</button>
     </form>
+    {showConfirm && (
+      <div style={{
+        position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+      }}>
+        <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+          <p>Are you sure you want to proceed?</p>
+          <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+          <button onClick={() => setShowConfirm(false)}>No</button>
+        </div>
+      </div>
+    )}
   );
 }
 

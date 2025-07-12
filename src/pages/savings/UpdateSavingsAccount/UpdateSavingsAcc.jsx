@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../../api/index';
 import './UpdateSavingsAcc.css'; // Create a CSS file for additional custom styles
@@ -14,7 +14,14 @@ function UpdateSavingsAcc() {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
 
   useEffect(() => {
     const fetchAccountDetails = async () => {
@@ -38,12 +45,16 @@ function UpdateSavingsAcc() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
-    const confirmed = window.confirm('Are you sure you want to proceed?');
-    if (!confirmed) return;
-    setIsSubmitting(true);
+    if (loading) return;
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = async () => {
+    setShowConfirm(false);
+    setError(null);
+    setLoading(true);
     try {
       await api.put(`/api/savings/${accountNo}`, accountDetails);
       alert('Account updated successfully');
@@ -51,7 +62,7 @@ function UpdateSavingsAcc() {
     } catch (err) {
       console.error('Error updating account:', err);
       setError('Error updating account');
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -118,8 +129,21 @@ function UpdateSavingsAcc() {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting}>Update Account</button>
+        <button type="submit" className="btn submit-btn" disabled={loading}>
+              {loading ? 'Processing...' : 'Update Account Details'}
+            </button>
       </form>
+      {showConfirm && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+            <p>Are you sure you want to Update account details?</p>
+            <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+            <button onClick={() => setShowConfirm(false)}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

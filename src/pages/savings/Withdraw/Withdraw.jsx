@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import api from '../../../api/index';
 import './Withdraw.css';
 import logo from '../../../assets/icons/logo.svg';
@@ -13,12 +13,23 @@ const Withdraw = () => {
   const [accountBalance, setAccountBalance] = useState('');
   const [remarks, setRemarks] = useState('withdraw');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isSubmitting) return;
-    const confirmed = window.confirm('Are you sure you want to withdraw this amount?');
-    if (!confirmed) return;
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = async () => {
+    setShowConfirm(false);
+    setError(null);
     setIsSubmitting(true);
     try {
       const response = await api.post('/api/transaction/withdraw/', {
@@ -174,6 +185,17 @@ const Withdraw = () => {
           )}
         </form>
       </div>
+      {showConfirm && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+            <p>Are you sure you want to withdraw this amount?</p>
+            <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+            <button onClick={() => setShowConfirm(false)}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

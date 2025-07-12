@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CreateLoanAccountForm.css';
 import api from '../../../api';
 import logo from "../../../assets/icons/logo.svg";
@@ -13,6 +13,14 @@ const CreateLoanAccount = () => {
   const [loanAmount, setLoanAmount] = useState('');
   const [timePeriod, setTimePeriod] = useState(''); // New state for time period
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
 
   useEffect(() => {
     const today = new Date();
@@ -76,11 +84,16 @@ const CreateLoanAccount = () => {
     newWindow.document.close();
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (loading) return;
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = async () => {
+    setShowConfirm(false);
     setError(null);
-    const confirmed = window.confirm('Are you sure you want to create this loan account?');
-    if (!confirmed) return;
+    setLoading(true);
     try {
         const result = await api.post('/api/loan/create-account', { 
             date, 
@@ -115,8 +128,10 @@ const CreateLoanAccount = () => {
     } catch (error) {
         console.error("API Error:", error);
         setError(error.response?.data?.message || 'An error occurred while creating the account.');
+    } finally {
+        setLoading(false);
     }
-};
+  };
 
 
   return (
@@ -199,6 +214,17 @@ const CreateLoanAccount = () => {
 
         <button type="submit" className="btn-primary">Submit</button>
       </form>
+      {showConfirm && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+            <p>Are you sure you want to create this loan account?</p>
+            <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+            <button onClick={() => setShowConfirm(false)}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

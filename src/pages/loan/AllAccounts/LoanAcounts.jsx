@@ -92,6 +92,7 @@ function LoanAccounts() {
               <th>Aadhar No</th>
               <th>Address</th>
               <th>Loan Taken</th>
+              <th>Remaining Loan Amount</th>
               <th>Time Period</th>
               <th>EMI Amount</th>
             </tr>
@@ -110,6 +111,7 @@ function LoanAccounts() {
                 <td>{user.AadharNo}</td>
                 <td>{user.Address}</td>
                 <td>₹{user.initialLoanAmount}</td>
+                <td>₹{user.loanAmount}</td>
                 <td>{user.timePeriod} months</td>
                 <td>₹{user.emiAmount}</td>
               </tr>

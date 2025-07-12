@@ -4,6 +4,7 @@ import { faHandHoldingHeart, faDonate, faPrint } from '@fortawesome/free-solid-s
 import api from '../../../api/index'; // Import API instance
 import './Donation.css'; // Import styles
 import logo from '../../../assets/icons/logo.svg'; // Ensure the correct path
+import { formatDateOnly } from '../../../util/FormatDate';
 
 const Donation = () => {
   const [donationAmount, setDonationAmount] = useState('');
@@ -68,7 +69,7 @@ const Donation = () => {
           <h3>Thank you for helping us. </h3>
           <p><span class="bold">Donor Name:</span> ${donorName}</p>
           <p><span class="bold">Donation Amount:</span> ₹${donationAmount}</p>
-          <p><span class="bold">Date:</span> ${donationDate}</p>
+          <p><span class="bold">Date:</span> ${formatDateOnly(donationDate)}</p>
           <p><span class="bold">Donor Address:</span> ${address}</p>
           <p><span class="bold">Mobile Number:</span> ${mobileNo}</p>
           <div class="footer">

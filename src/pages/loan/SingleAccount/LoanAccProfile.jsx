@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../../api';
 import './Profile.css';
-import { formatMongoDate } from '../../../util/FormatDate';
+import { formatMongoDate, formatDateOnly, formatDateTime } from '../../../util/FormatDate';
 
 function LoanAccProfile() {
   const { accountNo } = useParams();
@@ -83,11 +83,12 @@ function LoanAccProfile() {
         <p>Email: <strong>{accountDetails.email}</strong></p>
         <p>Mobile: <strong>{accountDetails.mobileNo}</strong></p>
         <p>Aadhar: <strong>{accountDetails.AadharNo}</strong></p>
-        <p>Address: <strong>{accountDetails.Address}</strong></p>
+        <p>Address: <strong>{accountDetails.Address}</strong></p>      
         <p>Initial Loan Amount: ₹<strong>{accountDetails.initialLoanAmount}</strong></p>
         <p>Remaining Loan Amount: ₹<strong>{accountDetails.loanAmount}</strong></p>
         <p>Time Period: <strong>{accountDetails.timePeriod} months</strong></p>
         <p>EMI Amount: ₹<strong>{accountDetails.emiAmount}</strong></p>
+        <p>Account Opening Date: <strong>{formatDateOnly(accountDetails.date)}</strong></p>
       </div>
       <h3>Transaction History</h3>
       <div className="table-responsive">
@@ -98,14 +99,14 @@ function LoanAccProfile() {
               <th>Transaction ID</th>
               <th>EMI</th>
               <th>Loan Taken</th>
-              <th>Time Period (Months)</th>
+              {/* <th>Time Period (Months)</th> */}
               <th>Remarks</th>
             </tr>
           </thead>
           <tbody>
             {transactions.length > 0 ? transactions.map((transaction) => (
               <tr key={transaction._id}>
-                <td>{formatMongoDate(transaction.createdAt)}</td>
+                <td>{formatDateTime(transaction.createdAt)}</td>
                 <td>{transaction.transactionId}</td>
                 <td>
                   {transaction.typeOfTransaction && transaction.typeOfTransaction.toLowerCase() === 'emi'
@@ -117,7 +118,7 @@ function LoanAccProfile() {
                     ? `₹${transaction.amount}`
                     : ""}
                 </td>
-                <td>{transaction.timePeriod || accountDetails.timePeriod || "N/A"}</td>
+                {/* <td>{transaction.timePeriod || accountDetails.timePeriod || "N/A"}</td> */}
                 <td>{transaction.remarks}</td>
               </tr>
             )) : <tr><td colSpan="6">No transactions available</td></tr>}

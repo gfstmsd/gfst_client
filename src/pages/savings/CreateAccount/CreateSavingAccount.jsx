@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CreateSavingAccountForm.css'; // Ensure this is your CSS file
 import api from '../../../api/index';
 import logo from "../../../assets/icons/logo.svg";
+import { formatDateOnly } from '../../../util/FormatDate';
 
 const CreateSavingAccount = () => {
   const [date, setDate] = useState('');
@@ -13,12 +14,16 @@ const CreateSavingAccount = () => {
   const [dob, setDob] = useState(''); // Added DOB state
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
 
   // Set the default date when the component mounts
   useEffect(() => {
+    isMounted.current = true;
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0]; // Formats date as YYYY-MM-DD
     setDate(formattedDate);
+    return () => { isMounted.current = false; };
   }, []);
 
   // Print Saving Account Slip
@@ -57,8 +62,8 @@ const CreateSavingAccount = () => {
           <p><span class="bold">Email:</span> ${email}</p>
           <p><span class="bold">Mobile No:</span> ${mobileNo}</p>
           <p><span class="bold">Address:</span> ${Address}</p>
-          <p><span class="bold">Date of Birth:</span> ${dob}</p>
-          <p><span class="bold">Account created:</span> ${date}</p>       
+          <p><span class="bold">Date of Birth:</span> ${formatDateOnly(dob)}</p>
+          <p><span class="bold">Account created:</span> ${formatDateOnly(date)}</p>       
           <div class="footer">
             <p><span class="bold">Contact Details</span> </p>
             <p>Email: gfcsmsd@gmail.com</p>
@@ -82,11 +87,15 @@ const CreateSavingAccount = () => {
   };
 
   // Handle Form Submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isSubmitting) return;
-    const confirmed = window.confirm('Are you sure you want to proceed?');
-    if (!confirmed) return;
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = () => {
+    setShowConfirm(false);
+    setError(null);
     setIsSubmitting(true);
     try {
       if (!date || !name || !email || !mobileNo || !AadharNo || !Address || !dob) {
@@ -162,6 +171,7 @@ const CreateSavingAccount = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
+          {date && <div style={{marginTop: 4, fontSize: '0.95em', color: '#555'}}>Selected: {formatDateOnly(date)}</div>}
         </div>
         <div className="form-group">
           <label>Name</label>
@@ -221,9 +231,21 @@ const CreateSavingAccount = () => {
             value={dob}
             onChange={(e) => setDob(e.target.value)}
           />
+          {dob && <div style={{marginTop: 4, fontSize: '0.95em', color: '#555'}}>Selected: {formatDateOnly(dob)}</div>}
         </div>
         <button type="submit" className="btn-primary" disabled={isSubmitting}>Submit</button>
       </form>
+      {showConfirm && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+            <p>Are you sure you want to proceed?</p>
+            <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+            <button onClick={() => setShowConfirm(false)}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

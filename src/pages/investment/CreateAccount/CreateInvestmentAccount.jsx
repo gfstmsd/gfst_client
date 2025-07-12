@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CreateInvestmentAccountForm.css'; // Ensure this is your CSS file
 import api from '../../../api';
 import logo from '../../../assets/icons/logo.svg';
@@ -12,51 +12,79 @@ const CreateInvestmentAccount = () => {
   const [Address, setAddress] = useState('');
   const [investmentAmount, setInvestmentAmount] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [pendingSubmit, setPendingSubmit] = useState(false);
+  const isMounted = useRef(true);
 
   // Set the default date when the component mounts
   useEffect(() => {
+    isMounted.current = true;
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0]; // Formats date as YYYY-MM-DD
     setDate(formattedDate);
+    return () => { isMounted.current = false; };
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const confirmed = window.confirm('Are you sure you want to create this investment account?');
-    if (!confirmed) return;
+    if (loading) return;
+    setShowConfirm(true);
+    setPendingSubmit(true);
+  };
+
+  const handleConfirm = () => {
+    setShowConfirm(false);
+    setPendingSubmit(false);
     setError(null);
+    setLoading(true);
 
     if (!date || !name || !email || !mobileNo || !AadharNo || !Address || !investmentAmount) {
-      setError('Please fill in all fields.');
+      if (isMounted.current) {
+        setError('Please fill in all fields.');
+        setLoading(false);
+      }
       return;
     }
     // Mobile number validation (must be 10 digits)
     const mobileRegex = /^\d{10}$/;
     if (!mobileRegex.test(mobileNo)) {
-      setError('Mobile number must be exactly 10 digits.');
+      if (isMounted.current) {
+        setError('Mobile number must be exactly 10 digits.');
+        setLoading(false);
+      }
       return;
     }
-  // Aadhar number validation (must be 12 digits)
-  const aadharRegex = /^\d{12}$/;
-  if (!aadharRegex.test(AadharNo)) {
-    setError('Aadhar number must be exactly 12 digits.');
-    return;
-  }
-   // Email validation (basic email pattern)
-   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-   if (!emailRegex.test(email)) {
-     setError('Please enter a valid email address.');
-     return;
-   }
-   
-   const investmentAmountNum = parseFloat(investmentAmount);
-   if (investmentAmountNum <= 0) {
-     setError("Loan amount must be greater than zero.");
-     return;
-   }
+    // Aadhar number validation (must be 12 digits)
+    const aadharRegex = /^\d{12}$/;
+    if (!aadharRegex.test(AadharNo)) {
+      if (isMounted.current) {
+        setError('Aadhar number must be exactly 12 digits.');
+        setLoading(false);
+      }
+      return;
+    }
+    // Email validation (basic email pattern)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      if (isMounted.current) {
+        setError('Please enter a valid email address.');
+        setLoading(false);
+      }
+      return;
+    }
+    const investmentAmountNum = parseFloat(investmentAmount);
+    if (investmentAmountNum <= 0) {
+      if (isMounted.current) {
+        setError("Loan amount must be greater than zero.");
+        setLoading(false);
+      }
+      return;
+    }
 
     api.post('/api/investment/create-account', { date, name, email, mobileNo, AadharNo, Address, investmentAmount })
       .then(result => {
+        if (!isMounted.current) return;
         console.log(result);
         alert('Account created successfully!');
         printInvestmentSlip(name, AadharNo, mobileNo, Address, date, email, investmentAmount);
@@ -69,10 +97,15 @@ const CreateInvestmentAccount = () => {
         setEmail('');
         setInvestmentAmount('');
         setError(null);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); // Give a moment for the print dialog
       })
       .catch(error => {
+        if (!isMounted.current) return;
         console.error(error);
         setError('An error occurred while creating the account.');
+        setLoading(false);
       });
   };
 
@@ -207,8 +240,19 @@ const CreateInvestmentAccount = () => {
           />
         </div>
         
-        <button type="submit" className="btn-primary">Submit</button>
+        <button type="submit" className="btn-primary" disabled={loading}>{loading ? 'Processing...' : 'Submit'}</button>
       </form>
+      {showConfirm && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+            <p>Are you sure you want to create this investment account?</p>
+            <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+            <button onClick={() => { setShowConfirm(false); setPendingSubmit(false); }}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

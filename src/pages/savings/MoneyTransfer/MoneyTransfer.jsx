@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import api from '../../../api/index';
 import "./MoneyTransfer.css";
 import logo from '../../../assets/icons/logo.svg'; // Import logo for the slip
@@ -15,6 +15,14 @@ const MoneyTransfer = () => {
 
   const [transferAmount, setTransferAmount] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => { isMounted.current = false; };
+  }, []);
 
   const handleSenderVerify = async () => {
     try {
@@ -51,12 +59,20 @@ const MoneyTransfer = () => {
     }
   };
 
-  const handleTransfer = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const confirmed = window.confirm('Are you sure you want to transfer this amount?');
-    if (!confirmed) return;
+    if (loading) return;
+    setShowConfirm(true);
+  };
+
+  const handleConfirm = async () => {
+    setShowConfirm(false);
+    setError(null);
+    setLoading(true);
+
     if (parseFloat(transferAmount) > parseFloat(senderBalance)) {
       setError("Insufficient balance.");
+      setLoading(false);
       return;
     }
 
@@ -86,6 +102,8 @@ const MoneyTransfer = () => {
       }
     } catch (err) {
       setError(err.response?.data?.message || "Error processing transfer.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -142,7 +160,7 @@ const MoneyTransfer = () => {
   return (
     <div className="form-wrapper">
       <div className="transfer-container">
-        <form onSubmit={handleTransfer} className="transfer-form">
+        <form onSubmit={handleSubmit} className="transfer-form">
           <h2 className="form-title">Money Transfer</h2>
           {error && <p className="error-message">{error}</p>}
 
@@ -204,13 +222,24 @@ const MoneyTransfer = () => {
                 value={transferAmount}
                 onChange={(e) => setTransferAmount(e.target.value)}
               />
-              <button type="submit" className="btn submit-btn">
-                Transfer Money
+              <button type="submit" className="btn submit-btn" disabled={loading}>
+                {loading ? 'Processing...' : 'Transfer Money'}
               </button>
             </div>
           )}
         </form>
       </div>
+      {showConfirm && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.2)', minWidth: 300, textAlign: 'center' }}>
+            <p>Are you sure you want to transfer this amount?</p>
+            <button onClick={handleConfirm} style={{ marginRight: 12 }}>Yes</button>
+            <button onClick={() => setShowConfirm(false)}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api/index'; // Import your API instance
 import './DonorList.css'; // Import the updated styles
+import { formatDateOnly } from '../../../util/FormatDate';
 
 const DonorList = () => {
   const [donors, setDonors] = useState([]);
@@ -88,7 +89,7 @@ const DonorList = () => {
                 <td>{donor.donorAddress}</td>
                 <td>{donor.donorMobileNo}</td>
                 <td>₹{donor.donationAmount}</td>
-                <td>{donor.donationDate}</td>
+                <td>{formatDateOnly(donor.donationDate)}</td>
               </tr>
             ))}
           </tbody>

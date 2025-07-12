@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api/index'; // Import API instance
 import './ExpenditureList.css'; // Import styles
+import { formatDateOnly } from '../../../util/FormatDate';
 
 const ExpenditureList = () => {
   const [expenditures, setExpenditures] = useState([]);
@@ -85,7 +86,7 @@ const ExpenditureList = () => {
           <tbody>
             {filteredExpenditures.map((expenditure, index) => (
               <tr key={index}>
-                <td>{new Date(expenditure.expenseDate).toLocaleDateString()}</td>
+                <td>{formatDateOnly(expenditure.expenseDate)}</td>
                 <td>{expenditure.expenseDetail}</td>
                 <td>₹{expenditure.expenseAmount.toFixed(2)}</td>
               </tr>
